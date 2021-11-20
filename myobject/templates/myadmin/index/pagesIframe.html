@@ -1,0 +1,192 @@
+{% extends base %}
+
+{% load static %}
+{% block main_body %}
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>数据表</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="">首页</a></li>
+              <li class="breadcrumb-item active">数据表</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">杨天龙样机查询</h3>
+              </div>
+              <!-- 加载样机查询 -->
+              <div class="card-header">
+                <form action="" method="get">
+                    <table class="aaa" border="0">
+                        <tr>
+                            <td width=100px>姓名：</td>
+                            <td>
+                                <select name="prototypeName" >
+                                    <option>{{prototypeName}}</option>
+                                    <option>杨天龙</option>
+                                    <option>何振兴</option>
+                                    <option>蒋小丽</option>
+                                    <option>郑廷威</option>
+                                    <option>王杰玉</option>
+                                    <option>刘志霞</option>
+                                    <option>彭雨超</option>
+                                    <option>许天华</option>
+                                    <option>黄伟鹏</option>
+                                    <option>刘康欣</option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td width=100px>项目代号：</td>
+                            <td><input id="demo" type="text" size="10" name="id_name" value="{{idName}}"/></td>
+                            <td>借用人：</td>
+                            <td><input id="demo" type="text" size="10" name="user_name" value="{{userName}}"/></td>
+                            <td>销售：</td>
+                            <td><input id="demo" type="text" size="10" name="de" value="{{de}}"/></td>
+                        </tr>
+                        <tr>
+                            <td>品牌： </td>
+                            <td><input id="demo" type="text" size="10" name="brand" value="{{brand}}"/></td>
+                            <td>安卓版本：</td>
+                            <td><input id="demo" type="text" size="10" name="pv" value="{{pv}}"/></td>
+                            <td>OS：</td>
+                            <td><input id="demo" type="text" size="10" name="os" value="{{OS}}"/></td>
+                        </tr>
+                        <tr>
+                            <td>IMEI： </td>
+                            <td><input id="demo" type="text" size="10" name="IMEI" value="{{IMEI}}"/></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input id="demo" type="submit" value="搜索"/></td>
+                        </tr>
+                    </table>
+                </form>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID号</th>
+                    <th>项目代号</th>
+                    <th>销售</th>
+                    <th>品牌</th>
+                    <th>安卓版本</th>
+                    <th>OS</th>
+                    <th>手机名</th>
+                    <th>IMEI</th>
+                    <th>样机管理员</th>
+                    <th>样机借用人</th>
+                    <th>借用时间</th>
+                    <th>归还时间</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                  </thead>
+                  <tbody>
+                    {% for prototype in prototypeList %}  <!-- for循环打印样机信息 -->
+                    <tr>
+                        <td>{{prototype.id}}</td>
+                        <td>{{prototype.id_name}}</td>
+                        <td>{{prototype.de}}</td>
+                        <td>{{prototype.brand}}</td>
+                        <td>{{prototype.pv}}</td>
+                        <td>{{prototype.os}}</td>
+                        <td>{{prototype.m_name}}</td>
+                        <td>{{prototype.IMEI}}</td>
+                        <td>{{prototype.name}}</td>
+                        <td>{{prototype.user_name}}</td>
+                        <td>{{prototype.borrow_time}}</td>
+                        <td>{{prototype.still_time}}</td>
+                        <td>{{prototype.备注}}</td>
+                        <td>
+                            <a href="/admin">编辑</a>
+                            <a href="javascript:doDel('/admin');">删除</a>
+                        </td>
+                    </tr>
+                    {% endfor %}  <!-- for循环结束 -->
+                  </tfoot>
+                </table>
+                <!-- 页码 -->
+                <table class="footer" border="0" width=600px;>
+                    <tr>
+                        <td><span>共{{pCount}}条</span></td>
+                        {% comment %}
+                        <td>
+                            <select name="pageselect" onchange="window.location.href=this.options[this.selectedIndex].value">
+                                <option value="">{{pagesNum}}条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 5 %}{{mywhere}}">5条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 10 %}{{mywhere}}">10条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 20 %}{{mywhere}}">20条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 50 %}{{mywhere}}">50条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 100 %}{{mywhere}}">100条/页</option>
+                            </select>
+                        </td>
+                        {% endcomment %}
+                        <td>
+                            <select name="pageselect" onchange="self.location.href=options[selectedIndex].value">
+                                <option value="">{{pagesNum}}条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 5 %}{{mywhere}}">5条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 10 %}{{mywhere}}">10条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 20 %}{{mywhere}}">20条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 50 %}{{mywhere}}">50条/页</option>
+                                <option value="{% url 'pages_iframe' dashboard n 100 %}{{mywhere}}">100条/页</option>
+                            </select>
+                        </td>
+                        <td>
+                                <a href="{% url 'pages_iframe' dashboard n|add:-1 pagesNum %}{{mywhere}}">上一页</a>
+                                {% for p in pagelist %}
+                                    {% if n == p %}
+                                        &nbsp;<a href="{% url 'pages_iframe' dashboard p pagesNum %}{{mywhere}}" style="color:red">{{p}}</a>&nbsp;
+                                    {% elif 1 == p or n|add:1 == p or n|add:-1 == p or n|add:2 == p or n|add:-2 == p or pnumpages == p%}
+                                        <a href="{% url 'pages_iframe' dashboard p pagesNum %}{{mywhere}}">{{p}}</a>
+                                    {% else %}
+                                        {% if n|add:3 == p or n|add:-3 == p or n|add:4 == p or n|add:-4 == p or n|add:5 == p or n|add:-5 == p %}
+                                            <a href="{% url 'pages_iframe' dashboard p pagesNum %}{{mywhere}}">.</a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                <a href="{% url 'pages_iframe' dashboard n|add:1 pagesNum %}{{mywhere}}">下一页</a>
+                        </td>
+                    </tr>
+                </table>
+                <!-- /页码结束 -->
+              </div>
+              <!-- /加载样机查询结束 -->
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
