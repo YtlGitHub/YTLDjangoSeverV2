@@ -5,7 +5,7 @@ from datetime import datetime
 
 class Family(models.Model):
     '''自定义family类'''
-    name = models.CharField('名字', max_length=25)
+    name = models.CharField('姓名', max_length=25)
     age = models.IntegerField('年龄')
     sex = models.CharField('性别', max_length=10)
     address = models.CharField('现住地址', max_length=50)
