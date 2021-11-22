@@ -3,6 +3,25 @@ from datetime import datetime
 # Create your models here.
 
 
+class Family(models.Model):
+    '''自定义family类'''
+    name = models.CharField('名字', max_length=25)
+    age = models.IntegerField('年龄')
+    sex = models.CharField('性别', max_length=10)
+    address = models.CharField('现住地址', max_length=50)
+    phone = models.IntegerField('电话号码', max_length=16)
+    birthday = models.DateTimeField('出生日期', blank=True)
+    addTime = models.DateTimeField('添加时间', blank=True)
+
+    def __str__(self):
+        pass
+
+    class Meta():
+        db_table = "family"  # 表名
+        verbose_name = '杨天龙家庭信息管理'
+        verbose_name_plural = '杨天龙家庭信息'
+
+
 class PrototypeInfo(models.Model):
     '''自定义PrototypeInfo表对应的Model类'''
     # 定义属性：主键默认自增id可不写
