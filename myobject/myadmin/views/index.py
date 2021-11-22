@@ -153,3 +153,9 @@ def ytl_url(request, n=1):
     base = f"myadmin/base{n}.html"
     context = {"base": base, }
     return render(request, "myadmin/ytlgs/YTLURL.html", context)
+
+
+def phone_info(request, n=1):
+    base = f"myadmin/base{n}.html"
+    context = {"base": base, }
+    return render(request, "myadmin/ytlgs/phoneInfo.html", context)

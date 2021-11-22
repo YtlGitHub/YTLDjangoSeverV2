@@ -11,4 +11,5 @@ urlpatterns = [
     path('iframe/<int:n>/', index.iframe, name="iframe"),
     path('pagesIframe/<int:dashboard>/<int:n>/<int:pageNums>/', index.pages_iframe, name="pages_iframe"),
     path('YTLUrl/<int:n>/', index.ytl_url, name="ytl_url"),
+    path('phoneInfo/<int:n>', index.phone_info, name="phone_info"),
 ]
