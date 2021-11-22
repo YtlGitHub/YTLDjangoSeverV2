@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'myprototype',
         'USER': 'root',
         'PASSWORD': 'ytl',
-        'HOST': '10.127.58.72',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }

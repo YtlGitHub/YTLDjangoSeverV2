@@ -4,4 +4,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("欢迎进入前台的大堂点餐端！<a></a>")
+    # return HttpResponse("欢迎进入前台的大堂点餐端！<a></a>")
+    return render(request, "myweb/index/index.html")
