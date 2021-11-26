@@ -17,6 +17,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['address', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('name',)  # 搜索字段
 
 
 @admin.register(PrototypeInfo)
@@ -29,7 +31,11 @@ class PrototypeAdmin(admin.ModelAdmin):
     list_per_page = 10
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
-    list_editable = ['备注', ]  # 设置可编辑字段
+    list_editable = ['备注',]  # 设置可编辑字段
+    # 筛选器
+    # list_filter = ('id_name')  # 过滤器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
+    # date_hierarchy = 'go_time'  # 详细时间分层筛选　
 
 
 @admin.register(PrototypeHzx)
@@ -43,6 +49,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['备注', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
 
 
 @admin.register(PrototypeJxl)
@@ -56,6 +64,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['备注', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
 
 
 @admin.register(Prototypeztw)
@@ -69,6 +79,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['备注', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
 
 
 @admin.register(Prototypewjy)
@@ -82,6 +94,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['备注', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
 
 
 @admin.register(Prototypelzx)
@@ -95,6 +109,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['备注', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
 
 
 @admin.register(Prototypepyc)
@@ -108,6 +124,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['备注', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
 
 
 @admin.register(Prototypexth)
@@ -121,6 +139,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['备注', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
 
 
 @admin.register(Prototypehwp)
@@ -134,6 +154,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['备注', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
 
 
 @admin.register(Prototypelkx)
@@ -147,6 +169,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     list_editable = ['备注', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('id_name', 'de', 'brand', 'pv', 'os', 'user_name')  # 搜索字段
 
 
 @admin.register(Material)  # 物料记录
@@ -160,6 +184,8 @@ class PrototypeAdmin(admin.ModelAdmin):
     # drdering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     # list_editable = ['sum', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('name',)  # 搜索字段
 
 
 @admin.register(Discipline)  # 违规记录
@@ -173,3 +199,5 @@ class PrototypeAdmin(admin.ModelAdmin):
     # ordering设置默认排序字段，负号表示降序排序
     ordering = ('id',)  # -id降序
     # list_editable = ['sum', ]  # 设置可编辑字段
+    # 筛选器
+    search_fields = ('name', )  # 搜索字段
