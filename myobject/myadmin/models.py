@@ -3,6 +3,23 @@ from datetime import datetime
 # Create your models here.
 
 
+class User(models.Model):
+    '''自定义User类'''
+    username = models.CharField(max_length=50)  # 员工账号
+    nickname = models.CharField(max_length=50)  # 昵称
+    password_hash = models.CharField(max_length=100)  # 密码
+    password_salt = models.CharField(max_length=50)  # 密码干扰值
+    status = models.IntegerField(default=1)  # 状态：1正常/2禁用/6管理员/9删除
+    create_at = models.DateTimeField(default=datetime.now())  # 创建时间
+    update_at = models.DateTimeField(default=datetime.now())  # 修改时间
+
+    def toDict(self):
+        return {'id': self.id, 'username': self.username, 'nickname': self.nickname, 'password_hash': self.password_hash, 'password_salt': self.password_salt, 'status': self.status, 'create_at': self.create_at, 'update_at': self.update_at}
+
+    class Meta:
+        db_table = "user"  # 指定表面
+
+
 class Family(models.Model):
     '''自定义family类'''
     name = models.CharField('姓名', max_length=25)
@@ -303,9 +320,9 @@ class Discipline(models.Model):  # 违规记录
     supplier = models.CharField('部门', max_length=20)
     violation = models.CharField('记录', max_length=255)
     time = models.DateTimeField('时间', max_length=255)
-    actual = models.CharField('实际', max_length=50)
-    fine = models.CharField('罚款', max_length=10)
-    money = models.IntegerField('金额')
+    actual = models.CharField('实际', max_length=50, blank=True)
+    fine = models.CharField('罚款', max_length=10, blank=True)
+    money = models.IntegerField('金额', blank=True)
 
     # def __str__(self):
     #     return f'{self.name,self.material,self.gave_time,self.sum}'

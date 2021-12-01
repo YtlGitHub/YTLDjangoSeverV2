@@ -1,0 +1,72 @@
+{% extends 'myadmin/base_user.html' %}
+
+{% load static %}
+{% block main_body %}
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">杨天龙样机查询</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID号</th>
+                <th>项目代号</th>
+                <th>销售</th>
+                <th>品牌</th>
+                <th>安卓版本</th>
+                <th>OS</th>
+                <th>手机名</th>
+                <th>IMEI</th>
+                <th>样机管理员</th>
+                <th>样机借用人</th>
+                <th>借用时间</th>
+                <th>归还时间</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>
+              </thead>
+              <tbody>
+                {% for prototype in prototypeList %}  <!-- for循环打印样机信息 -->
+                <tr>
+                    <td>{{prototype.id}}</td>
+                    <td>{{prototype.id_name}}</td>
+                    <td>{{prototype.de}}</td>
+                    <td>{{prototype.brand}}</td>
+                    <td>{{prototype.pv}}</td>
+                    <td>{{prototype.os}}</td>
+                    <td>{{prototype.m_name}}</td>
+                    <td>{{prototype.IMEI}}</td>
+                    <td>{{prototype.name}}</td>
+                    <td>{{prototype.user_name}}</td>
+                    <td>{{prototype.borrow_time}}</td>
+                    <td>{{prototype.still_time}}</td>
+                    <td>{{prototype.备注}}</td>
+                    <td>
+                        <a href="/admin">编辑</a>
+                        <a href="javascript:doDel('/admin');">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}  <!-- for循环结束 -->
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+{% endblock %}

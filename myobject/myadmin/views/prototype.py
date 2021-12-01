@@ -1,58 +1,12 @@
+# 样机信息管理的视图文件
 from django.shortcuts import render
 from django.http import HttpResponse
-# from myadmin.models import *
-from myadmin.models import PrototypeInfo, PrototypeHzx, PrototypeJxl, Prototypeztw, Prototypewjy, Prototypelzx, Prototypepyc, Prototypexth, Prototypehwp, Prototypelkx
-# Create your views here.
-from datetime import datetime  # 导入时间
-from django.core.paginator import Paginator  # 导入分页器
-from django.db.models import Q # 导入 &与 |或 模糊查询
+from myadmin.models import *
 from itertools import chain  # 导入不同对象链接到一起函数
-from django.shortcuts import redirect
-from django.urls import reverse
+from django.core.paginator import Paginator  # 导入分页器
 
 
-def index(request, n=1):
-    # return HttpResponse("欢迎进入点餐系统的后台管理！")
-    base = f"myadmin/base{n}.html"
-    context = {"base": base, }
-    return render(request, f'myadmin/index/index{n}.html', context)
-
-
-# 管理员登入表单
-def login(request):
-    return render(request, 'myadmin/index/login.html')
-
-
-# 执行管理员登入
-def dologin(request):
-    # try:
-    # 根据登入账号获取登录这信息
-    username = request.POST['username']
-    password = request.POST['password']
-    print(username, password)
-    if username == "admin" and password == "admin123":
-        # return redirect(reverse("myadmin_index"))
-        # 蒋当前登入成功的用户信息以admin为key写入到session中
-        print(request.session['admin'], "session")
-        request.session['admin'] = {'admin': 'admin123'}
-        base = f"myadmin/base{2}.html"
-        context = {"base": base, }
-        return render(request, f'myadmin/user/index0.html', context)
-    else:
-        context = {"info": "账号或密码错误"}
-
-    # except Exception as err:
-    #     print(err)
-    #     context = {"info": "账号或密码错误"}
-    return render(request, 'myadmin/index/login.html', context)
-
-
-# 管理员退出
-def logout(request):
-    return render(request, 'myadmin/index/logout.html')
-
-
-def iframe(request, n=1):
+def iframe(request):
     # return HttpResponse("展示全部信息")
     plist1 = PrototypeInfo.objects.all()
     plist2 = PrototypeHzx.objects.all()
@@ -66,14 +20,12 @@ def iframe(request, n=1):
     plist11 = Prototypelkx.objects.all()
     # plist = plist1 | plist2
     plist = chain(plist1, plist2, plist3, plist5, plist6, plist7, plist8, plist9, plist10, plist11)
-    base = f"myadmin/base{n}.html"
-    context = {"prototypeList": plist,
-               "base": base,
-               }
-    return render(request, f"myadmin/index/iframe.html", context)
+    print('plist:', plist)
+    context = {"prototypeList": plist}
+    return render(request, f"myadmin/prototype/iframe.html", context)
 
 
-def pages_iframe(request, dashboard=1, n=1, pageNums=5):
+def pages_iframe(request, n=1, pageNums=5):
     '''分页浏览信息'''
     prototypeName = request.GET.get("prototypeName", "")
     print(prototypeName)
@@ -168,9 +120,7 @@ def pages_iframe(request, dashboard=1, n=1, pageNums=5):
     elif n > p.num_pages:
         n = p.num_pages
     plist = p.page(n)  # 当前的页
-    base = f"myadmin/base{dashboard}.html"
     context = {"prototypeList": plist,
-               "dashboard": dashboard,
                "n": n,
                "pagelist": p.page_range,
                "pnumpages": p.num_pages,
@@ -178,23 +128,8 @@ def pages_iframe(request, dashboard=1, n=1, pageNums=5):
                "pCount": pCount,
                "pagesNum": pageNums,
                "prototypeName": prototypeName,
-               "base": base,
                # "idName": idName,
                # "userName": userName,
                }
     # print(Dashboard)
-    return render(request, "myadmin/index/pagesIframe.html", context)
-
-
-def ytl_url(request, n=1):
-    '''我的常用网址'''
-    base = f"myadmin/base{n}.html"
-    context = {"base": base, }
-    return render(request, "myadmin/ytlgs/YTLURL.html", context)
-
-
-def phone_info(request, n=1):
-    '''adb命令查看手机信息'''
-    base = f"myadmin/base{n}.html"
-    context = {"base": base, }
-    return render(request, "myadmin/ytlgs/phoneInfo.html", context)
+    return render(request, "myadmin/prototype/pagesIframe.html", context)

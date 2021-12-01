@@ -1,0 +1,335 @@
+{% extends 'myadmin/base_user.html' %}
+
+{% load static %}
+{% block main_body %}
+<!-- Content Wrapper. Contains page content -->
+    <style type="text/css">
+
+    </style>
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>数据表</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">首页</a></li>
+              <li class="breadcrumb-item active">数据表</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">杨天龙的常用网址</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped" style="text-align: center;">
+                  <thead>
+                    <tr>
+                      <th colspan = "4"><font size="5" >兼容测试网址</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><a href="https://odocs.myoas.com/sheets/Vgoq9gGKXZgVwvgv/7B7c8"  target="目标" title="说明">互联网工作日报 - 兼容</a></td>
+                      <td><a href="https://odocs.myoas.com/sheets/xite2cdjXP4p5365/zpCiz"  target="目标" title="说明">工作汇报</a></td>
+                      <td><a href="https://odocs.myoas.com/folder/erAdP6GQKec1VdAG"  target="目标" title="说明">兼容性测试任务接收 - 石墨文档</a></td>
+                      <td><A HREF="https://odocs.myoas.com/sheets/c6WDKht6GyCdrTgq/G9LRl/" target="blank">测试情况汇总</A></td>
+                    </tr>
+                    <tr>
+                      <td><a href="http://aqmd.itest.wanyol.com/case/index" target="目标" title="说明">AQMD</a></td>
+                      <td><a href="http://columbus.os.adc.com/manageView/project"  target="目标" title="说明">哥伦布系统</a></td>
+                      <td><a href="https://doc.myoas.com/pages/viewpage.action?pageId=435943337"  target="目标" title="说明">CF</a></td>
+                      <td><a href="https://odocs.myoas.com/sheets/hkp96YqDWydy88yy/MODOC"  target="目标" title="说明">吴志祥-哥伦布的兼容性缺陷数量排行</a></td>
+                    </tr>
+                    <tr>
+                      <td><A HREF="http://pay-front-admin-test.wanyol.com/#/login">安全支付测试平台</A></td>
+                      <td><a href="https://phonemanage.wanyol.com/#/dashboard"  target="目标" title="说明">样机管理平台</a></td>
+                      <td><A HREF="http://10.177.250.130/datatools/toolindex.html#/fuxi/dataview">伏羲数据</A></td>
+                      <td><a href="http://generate-account.wanyol.com/#/normal"  target="目标" title="说明">会员测试平台</a></td>
+                    </tr>
+                    <tr>
+                      <td><A HREF="https://odocs.myoas.com/sheets/hd9py6Cxg8hwgDyy/pDYLe/ " target="_blank" title="历史遗留缺陷验证">《历史遗留缺陷验证》</A></td>
+                      <td><A HREF="http://olcoud.util.platform.wanyol.com/#/PhonePath" target="blank">获取刷机地址</A></td>
+                      <td><A HREF="https://outlook.office365.com/mail/inbox" target="blank">OPPO邮箱</A></td>
+                      <td><A HREF="https://oms.myoas.com/overtime" target="blank">OMS外包管理系统</A></td>
+                    </tr>
+                    <tr>
+                      <td><A HREF="https://it6000.myoas.com/static/#/software" target="blank" title="说明">软件下载</A></td>
+                      <td><A HREF="https://odocs.myoas.com/sheets/YjvKTqRdxJVpyYRw/MODOC" target="blank">设备带入黄区</A></td>
+                      <td><A HREF="https://odocs.myoas.com/sheets/Wr3DVzX0dbuGQVkJ/MODOC" target="blank">2021年培训内容</A></td>
+                      <td><A HREF="https://doc.myoas.com/pages/resumedraft.action?draftId=460620879&draftShareId=b97c2808-a7e9-44c7-9200-8c00182fbf89&" target="blank">培训课题</A></td>
+                    </tr>
+                    <tr>
+                      <td><A HREF="https://odocs.myoas.com/sheets/onq7Mwx8V7t4FmA9/O0MoQ/" target="blank">周六值班表</A></td>
+                      <td><A HREF="https://odocs.myoas.com/sheets/rcckPPkG8wy9ygPR/" target="_blank" title="">个人样机登记表</A></td>
+                      <td><A HREF="" target="_blank" title=""></A></td>
+                      <td><A HREF="" target="_blank" title=""></A></td>
+                    </tr>
+                    <tr>
+                      <th colspan = "4" ><font size="5" >适配网址</th>
+                    </tr>
+                    <tr>
+                      <td><a href="http://testset.myoas.com/#/projectSpace" target="目标" title="说明">TESTSET</a></td>
+                      <td><a href="https://doc.myoas.com/pages/viewpage.action?pageId=359935736" target="目标" title="说明">待验证/打回问题统一处理方法</a></td>
+                      <td><a href="http://alm.adc.com/OPPO/%E7%BC%BA%E9%99%B7%E7%AE%A1%E7%90%86"  target="目标" title="说明">ALM</a></td>
+                      <td><a href="https://doc.myoas.com/pages/viewpage.action?pageId=276073649"  target="目标" title="说明">智能产品-前端测试任务列表</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="https://doc.myoas.com/pages/viewpage.action?pageId=259906496" target="目标" title="说明">快应用版本信息 - 智能产品部共享资料</a></td>
+                      <td><a href="https://noah-gsdp.myoas.com/global-search/" target="目标" title="说明">global-search</a></td>
+                      <td><a href="http://poseidon.adc.com/home"  target="目标" title="说明">波塞冬-大文件管理系统</a></td>
+                      <td><A HREF="http://qmd.adc.com/qmd/testTask/my-task" target="目标" title="说明">QDM</A></td>
+                    </tr>
+                    <tr>
+                      <td><A HREF="https://odocs.myoas.com/" target="目标" title="说明">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/" target="目标" title="说明">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/" target="目标" title="说明">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/" target="目标" title="说明">待定</A></td>
+                    </tr>
+                    <tr>
+                      <td><A HREF="https://odocs.myoas.com/" target="目标" title="说明">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/" target="目标" title="说明">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/" target="目标" title="说明">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/" target="目标" title="说明">待定</A></td>
+                    </tr>
+                    <tr>
+                        <th colspan = "4"><font size="5" color="">yTL网址</th>
+                    </tr>
+                    <tr>
+                      <td><a href="https://ytlgithub.github.io/"  target="目标" title="说明">YTLBlog</a></td>
+                      <td><A HREF="http://localhost:8080/">本地博客服务</A></td>
+                      <td><a href="https://fanyi.baidu.com/translate?aldtype=16047&query=&keyfrom=baidu&smartresult=dict&lang=auto2zh#auto/zh/"  target="目标" title="说明">百度翻译</a></td>
+                      <td><a href="https://www.bitbug.net/"  target="目标" title="说明">制作ico图标</a></td>
+                    </tr>
+                    <tr>
+                      <td><A HREF="https://docs.qq.com/desktop/mydoc/folder/HQzxCJriRxCn">腾讯文档-杨天龙</A></td>
+                      <td><a href="https://vic.kim/2019/05/20/UIAutomator2%E7%9A%84%E4%BD%BF%E7%94%A8/"  target="目标" title="说明">UIAutomator2的使用 | Vicの博客</a></td>
+                      <td><A HREF="https://odocs.myoas.com/">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/">待定</A></td>
+                    </tr>
+                    <tr>
+                      <td><A HREF="https://github.com/YtlGitHub/YtlGitHub.github.io">个人博客</A></td>
+                      <td><A HREF="https://odocs.myoas.com/">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/">待定</A></td>
+                    </tr>
+                    <tr>
+                      <td><A HREF="https://odocs.myoas.com/">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/">待定</A></td>
+                      <td><A HREF="https://odocs.myoas.com/">待定</A></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+<!--<!DOCTYPE NETSCAPE-Bookmark-file-1>-->
+<!--<html>-->
+<!--<head>-->
+<!--<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">-->
+<!--<TITLE>YTL的常用网址</TITLE>-->
+<!--	<style type="text/css">-->
+<!--        /*表格样式*/-->
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            background: #ccc;-->
+<!--            margin: 10px auto;-->
+<!--            border-collapse: collapse;/*borrder-collapse合并内外边距(去除表格单元格默认的两个像素内外边距)*/-->
+<!--        }-->
+<!--        th,td {-->
+<!--            height: 25px;-->
+<!--            line-height: 25px;-->
+<!--            text-align: center;-->
+<!--            border: 1px solid #ccc;-->
+<!--        }-->
+<!--        th {-->
+<!--            background: #eee;-->
+<!--            #font-weight: normal;-->
+<!--        }-->
+<!--        tr {-->
+<!--            background: #fff;-->
+<!--        }-->
+<!--        tr:hover {-->
+<!--            #background: #cc0;-->
+<!--        }-->
+<!--        td a {-->
+<!--            color: #06f;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+<!--        td a:hover {-->
+<!--            background: #cc0;-->
+<!--            color: #06f;-->
+<!--            text-decoration: underline;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<a href="{% url 'myadmin_index2' %}">返回首页</a>-->
+<!--<H1><font size="6" color="red">YTL的常用网址</H1>-->
+<!--<table border="1" style="width:100%">-->
+<!--    <tr>-->
+<!--           &lt;!&ndash; 合并第一列和第二列 从左往右，把要合并的不写用  用colspan写要合并的列&ndash;&gt;-->
+<!--             <th colspan = "4" ><font size="3" color="red">兼容测试网址</th>-->
+<!--             &lt;!&ndash; <td>第一行第二列</td> &ndash;&gt;-->
+<!--           </tr>-->
+<!--    <tr>-->
+<!--    <tr>-->
+<!--        <td style="width:25%"><a href="https://odocs.myoas.com/sheets/Vgoq9gGKXZgVwvgv/7B7c8"  target="目标" title="说明">互联网工作日报 - 兼容</a></td>-->
+<!--        <td style="width:25%"><a href="https://odocs.myoas.com/sheets/xite2cdjXP4p5365/zpCiz"  target="目标" title="说明">工作汇报</a></td>-->
+<!--        <td style="width:25%"><a href="https://odocs.myoas.com/folder/erAdP6GQKec1VdAG"  target="目标" title="说明">兼容性测试任务接收 - 石墨文档</a></td>-->
+<!--		<td style="width:25%"><A HREF="https://odocs.myoas.com/sheets/c6WDKht6GyCdrTgq/G9LRl/" target="blank">测试情况汇总</A></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--		<td style="..."><a href="http://aqmd.itest.wanyol.com/case/index" target="目标" title="说明">AQMD</a></td>-->
+<!--        <td style="width:25%"><a href="http://columbus.os.adc.com/manageView/project"  target="目标" title="说明">哥伦布系统</a></td>-->
+<!--        <td style="width:25%"><a href="https://doc.myoas.com/pages/viewpage.action?pageId=435943337"  target="目标" title="说明">CF</a></td>-->
+<!--        <td style="width:25%"><a href="https://odocs.myoas.com/sheets/hkp96YqDWydy88yy/MODOC"  target="目标" title="说明">吴志祥-哥伦布的兼容性缺陷数量排行</a></td>-->
+
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td style="width:25%"><A HREF="http://pay-front-admin-test.wanyol.com/#/login">安全支付测试平台</A></td>-->
+<!--        <td style="width:25%"><a href="https://phonemanage.wanyol.com/#/dashboard"  target="目标" title="说明">样机管理平台</a></td>-->
+<!--        <td style="width:25%"><A HREF="http://10.177.250.130/datatools/toolindex.html#/fuxi/dataview">伏羲数据</A></td>-->
+<!--        <td style="width:25%"><a href="http://generate-account.wanyol.com/#/normal"  target="目标" title="说明">会员测试平台</a></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/sheets/hd9py6Cxg8hwgDyy/pDYLe/ " target="_blank" title="历史遗留缺陷验证">《历史遗留缺陷验证》</A></td>-->
+<!--    <td style="width:25%"><A HREF="http://olcoud.util.platform.wanyol.com/#/PhonePath" target="blank">获取刷机地址</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://outlook.office365.com/mail/inbox" target="blank">OPPO邮箱</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://oms.myoas.com/overtime" target="blank">OMS外包管理系统</A></td>-->
+<!--    </tr>-->
+<!--	<tr>-->
+<!--    <td style="width:25%"><A HREF="https://it6000.myoas.com/static/#/software" target="blank" title="说明">软件下载</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/sheets/YjvKTqRdxJVpyYRw/MODOC" target="blank">设备带入黄区</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/sheets/Wr3DVzX0dbuGQVkJ/MODOC" target="blank">2021年培训内容</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://doc.myoas.com/pages/resumedraft.action?draftId=460620879&draftShareId=b97c2808-a7e9-44c7-9200-8c00182fbf89&" target="blank">培训课题</A></td>-->
+<!--    </tr>-->
+<!--	<tr>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/sheets/onq7Mwx8V7t4FmA9/O0MoQ/" target="blank">周六值班表</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/sheets/rcckPPkG8wy9ygPR/" target="_blank" title="">个人样机登记表</A></td>-->
+<!--	<td style="width:25%"><A HREF="" target="_blank" title=""></A></td>-->
+<!--	<td style="width:25%"><A HREF="" target="_blank" title=""></A></td>-->
+<!--    </tr>-->
+
+<!--    <tr>-->
+<!--           &lt;!&ndash; 合并第一列和第二列 从左往右，把要合并的不写用  用colspan写要合并的列&ndash;&gt;-->
+<!--             <th colspan = "4" ><font size="3" color="red">适配网址</th>-->
+<!--             &lt;!&ndash; <td>第一行第二列</td> &ndash;&gt;-->
+<!--           </tr>-->
+<!--    <tr>-->
+<!--    <tr>-->
+<!--        <td style="..."><a href="http://testset.myoas.com/#/projectSpace" target="目标" title="说明">TESTSET</a></td>-->
+<!--        <td style="..."><a href="https://doc.myoas.com/pages/viewpage.action?pageId=359935736" target="目标" title="说明">待验证/打回问题统一处理方法</a></td>-->
+<!--        <td style="width:25%"><a href="http://alm.adc.com/OPPO/%E7%BC%BA%E9%99%B7%E7%AE%A1%E7%90%86"  target="目标" title="说明">ALM</a></td>-->
+<!--        <td style="width:25%"><a href="https://doc.myoas.com/pages/viewpage.action?pageId=276073649"  target="目标" title="说明">智能产品-前端测试任务列表</a></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td style="..."><a href="https://doc.myoas.com/pages/viewpage.action?pageId=259906496" target="目标" title="说明">快应用版本信息 - 智能产品部共享资料</a></td>-->
+<!--        <td style="..."><a href="https://noah-gsdp.myoas.com/global-search/" target="目标" title="说明">global-search</a></td>-->
+<!--        <td style="width:25%"><a href="http://poseidon.adc.com/home"  target="目标" title="说明">波塞冬-大文件管理系统</a></td>-->
+<!--        <td style="width:25%"><A HREF="http://qmd.adc.com/qmd/testTask/my-task">QDM</A></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    </tr>-->
+
+<!--	<tr>-->
+<!--    &lt;!&ndash; 合并第一列和第二列 从左往右，把要合并的不写用  用colspan写要合并的列&ndash;&gt;-->
+<!--    <th colspan = "4" ><font size="4" color="red">考勤网址</th>-->
+<!--    &lt;!&ndash; <td>第一行第二列</td> &ndash;&gt;-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><a href="https://oms.myoas.com/"  target="目标" title="说明">OMS外包管理系统</a></td>-->
+<!--    <td style="width:25%"><a href="http://upm.myoas.com/siag/index#/console/system/user-management"  target="目标" title="说明">权限自助中心</a></td>-->
+<!--    <td style="width:25%"><a href="https://hio.oppo.com/app/kb/center/view?source=index&enc_kbi_id=158011246_157681033&type=VEDIO&kbi_image=273729"  target="目标" title="说明">HiO 平台</a></td>-->
+<!--    <td style="width:25%"><a href="https://passport.isoftstone.com/"  target="目标" title="说明">软通动力专业服务系统</a></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    </tr>-->
+
+<!--    <tr>-->
+<!--           &lt;!&ndash; 合并第一列和第二列 从左往右，把要合并的不写用  用colspan写要合并的列&ndash;&gt;-->
+<!--             <th colspan = "4" ><font size="3" color="red">yTL网址</th>-->
+<!--             &lt;!&ndash; <td>第一行第二列</td> &ndash;&gt;-->
+<!--           </tr>-->
+<!--    <tr>-->
+<!--    <tr>-->
+<!--        <td style="width:25%"><a href="https://ytlgithub.github.io/"  target="目标" title="说明">YTLBlog</a></td>-->
+<!--        <td style="width:25%"><A HREF="http://localhost:8080/">本地博客服务</A></td>-->
+<!--        <td style="width:25%"><a href="https://fanyi.baidu.com/translate?aldtype=16047&query=&keyfrom=baidu&smartresult=dict&lang=auto2zh#auto/zh/"  target="目标" title="说明">百度翻译</a></td>-->
+<!--        <td style="width:25%"><a href="https://www.bitbug.net/"  target="目标" title="说明">制作ico图标</a></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><A HREF="https://docs.qq.com/desktop/mydoc/folder/HQzxCJriRxCn">腾讯文档-杨天龙</A></td>-->
+<!--    <td style="width:25%"><a href="https://vic.kim/2019/05/20/UIAutomator2%E7%9A%84%E4%BD%BF%E7%94%A8/"  target="目标" title="说明">UIAutomator2的使用 | Vicの博客</a></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><A HREF="https://github.com/YtlGitHub/YtlGitHub.github.io">个人博客</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    <td style="width:25%"><A HREF="https://odocs.myoas.com/">待定</A></td>-->
+<!--    </tr>-->
+<!--</table>-->
+<!--</body>-->
+<!--</html>-->

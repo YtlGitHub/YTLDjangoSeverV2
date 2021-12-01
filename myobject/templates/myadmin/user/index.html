@@ -1,0 +1,139 @@
+{% extends 'myadmin/base_user.html' %}
+
+{% load static %}
+{% block main_body %}
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <!-- /.card -->
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">员工管理表</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row"><div class="col-sm-12 col-md-6">
+                  <form action="{% url 'myadmin_user_index' 1 %}" method="get">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="status" id="option_a1" autocomplete="off" checked="" value=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font></label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="status" id="option_a1" autocomplete="off" value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 正常</font></font></label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="status" id="option_a2" autocomplete="off" value="2" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 禁用</font></font></label>
+                      <label class="btn btn-secondary active">
+                        <input type="radio" name="status" id="option_a3" autocomplete="off" value="6" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 管理员</font></font></label>
+                    </div>
+                    <button style="submit; background-color: #343a40;"><i class="fas fa-search"></i></button>
+                  </form>
+                </div>
+                  <div class="col-sm-12 col-md-6">
+                    <div id="example1_filter" class="dataTables_filter">
+                      <form action="{% url 'myadmin_user_index' 1 %}" method="get">
+                        <label><input type="search" name="keyword" class="form-control form-control-sm" placeholder="账户/昵称" aria-controls="example1"></label>
+                        <button style="submit; background-color: #343a40;"><i class="fas fa-search"></i></button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-12">
+                  <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" aria-describedby="example1_info">
+                    <thead>
+                      <tr>
+                        <th>ID号</th>
+                        <th>账号</th>
+                        <th>昵称</th>
+                        <th>状态</th>
+                        <th>添加时间</th>
+                        <th>修改时间</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for vo in userlist %}  <!-- for循环打印样机信息 -->
+                      <tr>
+                          <td>{{vo.id}}</td>
+                          <td>{{vo.username}}</td>
+                          <td>{{vo.nickname}}</td>
+                          <td>
+                            {% if vo.status == 1 %}
+                              <span style="color: #28a745">正常</span>
+                            {% elif vo.status == 2 %}
+                              <span style="color: #dc3545">禁用</span>
+                            {% elif vo.status == 6 %}
+                              <span style="color: #007bff">管理员</span>
+                            {% elif vo.status == 9 %}
+                              <span style="color: #dc3545">已删除</span>
+                            {% else %}
+                              <span style="color: red">未知状态</span>
+                            {% endif %}
+                          </td>
+                          <td>{{vo.create_at}}</td>
+                          <td>{{vo.update_at}}</td>
+                          <td>
+                            <a class="btn btn-block btn-primary" href="{% url 'myadmin_user_edit' vo.id %}">
+                                <i class="fas fa-edit"></i>
+                                <span class="">编辑</span>
+                            </a>
+                            <a class="btn btn-block btn-danger" href="javascript:doDel('{% url 'myadmin_user_delete' vo.id %}');">
+                                <span class="fas fa-trash"></span>
+                                <span>删除</span>
+                                <!--<button type="button" onclick="doDel('{% url 'myadmin_user_delete' vo.id %}' )">删除</button>-->
+                            </a>
+                          </td>
+                      </tr>
+                      {% endfor %}  <!-- for循环结束 -->
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-0">
+                    <div class="dataTables_info" id="example1_info" role="status" aria-live="polite"><a href="{% url 'myadmin_user_add' %}">添加员工</a></div>
+                  </div>
+                  <div class="col-sm-12 col-md-5">
+                    <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 5 of {{usercount}} entries</div>
+                  </div>
+                  <div class="col-sm-12 col-md-7">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                      <ul class="pagination">
+                        {% if pIndex <= 1 %} <!--当上一页到第一页时就不能在上了-->
+                          <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="{% url 'myadmin_user_index' pIndex|add:-1 %}?{{mywhere|join:'&'}}" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">上一页</a></li>
+                        {% else %}
+                          <li class="paginate_button page-item previous" id="example1_previous"><a href="{% url 'myadmin_user_index' pIndex|add:-1 %}?{{mywhere|join:'&'}}" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">上一页</a></li>
+                        {% endif %}
+                        {% for p in plist %}  <!--遍历每页数据-->
+                          {% if p == pIndex %}  <!--当当前页等于页码页时图标高亮显示-->
+                            <li class="paginate_button page-item active"><a href="{% url 'myadmin_user_index' p %}?{{mywhere|join:'&'}}" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">{{p}}</a></li>
+                          {% else %}
+                            <li class="paginate_button page-item"><a href="{% url 'myadmin_user_index' p %}?{{mywhere|join:'&'}}" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">{{p}}</a></li>
+                          {% endif %}
+                        {% endfor %}
+                        {% if pIndex >= maxpages %}  <!--当下一页到最后页时就不能在下一下了-->
+                          <li class="paginate_button page-item next disabled" id="example1_next"><a href="{% url 'myadmin_user_index' pIndex|add:1 %}?{{mywhere|join:'&'}}" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">下一页</a></li>
+                        {% else %}
+                          <li class="paginate_button page-item next" id="example1_next"><a href="{% url 'myadmin_user_index' pIndex|add:1 %}?{{mywhere|join:'&'}}" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">下一页</a></li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+{% endblock %}

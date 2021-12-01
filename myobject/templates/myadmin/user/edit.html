@@ -1,0 +1,95 @@
+{% extends 'myadmin/base_user.html' %}
+
+{% load static %}
+{% block main_body %}
+<div class="register-box">
+  <div class="register-logo">
+    <a href="../../index2.html"><b>Admin</b>LTE</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">编辑员信息</p>
+
+      <form action="{% url 'myadmin_user_update' user.id %}" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" name="username" readonly class="form-control" value="{{ user.username }}" placeholder="账号">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">账号</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="nickname" class="form-control" value="{{ user.nickname }}" placeholder="昵称">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">昵称</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+<!--          <input type="text" name="status" class="form-control"  value="{{ user.status }}" placeholder="状态">-->
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary">
+              {% if user.status == 1 %}  <!-- checked=""-->
+                <input type="radio" name="status" id="option_a1" autocomplete="off" checked value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp&nbsp&nbsp&nbsp正常&nbsp&nbsp&nbsp</font></font></label>
+              {% elif user.status == 2 %}  <!-- checked=""-->
+                <input type="radio" name="status" id="option_a1" autocomplete="off" value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp&nbsp&nbsp&nbsp正常&nbsp&nbsp&nbsp</font></font></label>
+              {% elif user.status == 6 %}  <!-- checked=""-->
+                <input type="radio" name="status" id="option_a1" autocomplete="off" value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp&nbsp&nbsp&nbsp正常&nbsp&nbsp&nbsp</font></font></label>
+              {% endif %}
+            <label class="btn btn-secondary">
+              {% if user.status == 1 %}  <!-- checked=""-->
+                <input type="radio" name="status" id="option_a1" autocomplete="off"  value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp&nbsp&nbsp&nbsp禁用&nbsp&nbsp&nbsp&nbsp</font></font></label>
+              {% elif user.status == 2 %}  <!-- checked=""-->
+                <input type="radio" name="status" id="option_a1" autocomplete="off" checked value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp&nbsp&nbsp&nbsp禁用&nbsp&nbsp&nbsp&nbsp</font></font></label>
+              {% elif user.status == 6 %}  <!-- checked=""-->
+                <input type="radio" name="status" id="option_a1" autocomplete="off" value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp&nbsp&nbsp&nbsp禁用&nbsp&nbsp&nbsp&nbsp</font></font></label>
+              {% endif %}
+            <label class="btn btn-secondary active">
+              {% if user.status == 1 %}  <!-- checked=""-->
+                <input type="radio" name="status" id="option_a1" autocomplete="off"  value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp&nbsp&nbsp管理员&nbsp&nbsp&nbsp&nbsp</font></font></label>
+              {% elif user.status == 2 %}  <!-- checked=""-->
+                <input type="radio" name="status" id="option_a1" autocomplete="off"  value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp&nbsp&nbsp管理员&nbsp&nbsp&nbsp&nbsp</font></font></label>
+              {% elif user.status == 6 %}  <!-- checked=""-->
+                <input type="radio" name="status" id="option_a1" autocomplete="off" checked value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp&nbsp&nbsp管理员&nbsp&nbsp&nbsp&nbsp</font></font></label>
+              {% endif %}
+          </div>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">&nbsp状态</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" readonly value="{{ user.create_at|date:'Y-m-d H:i:s' }}" placeholder="添加时间">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-times-circle-o">添加时间</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" readonly value="{{ user.update_at|date:'Y-m-d H:i:s' }}" placeholder="修改时间">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-times-circle-o">修改时间</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+{% endblock %}
