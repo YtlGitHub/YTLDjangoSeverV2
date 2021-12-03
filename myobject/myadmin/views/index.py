@@ -56,7 +56,8 @@ def dologin(request):
 
 # 管理员退出
 def logout(request):
-    return render(request, 'myadmin/index/logout.html')
+    del request.session["adminuser"]
+    return redirect(reverse("myadmin_login"))
 
 
 def iframe(request, n=1):
