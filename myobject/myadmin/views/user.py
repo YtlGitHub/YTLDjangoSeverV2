@@ -52,27 +52,18 @@ def insert(request):
     try:
         ob = User()
         ob.username = request.POST['username']
-        print("username:", request.POST['username'])
         ob.nickname = request.POST['nickname']
-        print("nickname:", request.POST['nickname'])
-        ob.retype_password = request.POST['retype_password']
-        print("retype_password:", request.POST['retype_password'])
         import hashlib, random
         md5 = hashlib.md5()
-        print("md5:", md5)
         n = random.randint(100000, 999999)
-        print("n:", n)
         s = request.POST['password']+str(n)  # 从表单中获取密码并添加干扰值
-        print("s:", s)
         md5.update(s.encode('utf-8'))  # 蒋要产生md5的字符串放进去
-        print("md5字符串:", md5.update(s.encode('utf-8')))
-        print("md5值:", md5.hexdigest())
         ob.password_hash = md5.hexdigest()  # 获取md5值
+        print("insert", md5.hexdigest())
         ob.password_salt = n
         ob.status = 1
         ob.create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print("当前时间:", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         ob.save()
         context = {'info': '添加成功'}
     except Exception as err:

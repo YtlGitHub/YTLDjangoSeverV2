@@ -24,7 +24,6 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">{{ info }}</p>
-
       <form action="{% url 'myadmin_dologin' %}" method="post">
         {% csrf_token %}
         <div class="input-group mb-3">

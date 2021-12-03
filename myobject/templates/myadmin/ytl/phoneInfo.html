@@ -2,82 +2,69 @@
 
 {% load static %}
 {% block main_body %}
-  <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">查看手机信息</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped" style="text-align: center;">
-                <thead>
-                  <tr>
-                    <th colspan = "2"><font size="5" >adb命令</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>获取序列号:</td>
-                    <td>adb devices</td>
-                  </tr>
-                  <tr>
-                    <td>品牌:</td>
-                    <td>adb shell getprop ro.product.brand</td>
-                  </tr>
-                  <tr>
-                    <td>设备名称:</td>
-                    <td>adb shell getprop ro.oppo.market.name</td>
-                  </tr>
-                  <tr>
-                    <td>产品代号:</td>
-                    <td>adb shell getprop ro.separate.soft</td>
-                  </tr>
-                  <tr>
-                    <td>产品型号:</td>
-                    <td>adb shell getprop ro.product.name</td>
-                  </tr>
-                  <tr>
-                    <td>Android版本:</td>
-                    <td>adb shell getprop ro.build.version.release</td>
-                  </tr>
-                  <tr>
-                    <td>OS:</td>
-                    <td>adb shell getprop ro.build.version.opporom</td>
-                  </tr>
-                  <tr>
-                    <td>OTA版本:</td>
-                    <td>adb shell getprop ro.build.version.ota</td>
-                  </tr>
-                  <tr>
-                    <td>IMEI_GUID_Carrier:</td>
-                    <td>adb shell dumpsys engineer --query_indicate_info</td>
-                  </tr>
-                  <tr>
-                    <td>OTA开关(1为开，0或者空为关):</td>
-                    <td>adb shell getprop sys.ota.test</td>
-                  </tr>
-                  <tr>
-                    <td>MTK/高通(打印MTK则是MTK，空为高通):	</td>
-                    <td>adb shell getprop Build.BRAND</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+  <!-- 黑色背景 -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">查看手机信息</h3>
     </div>
-    <!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="example1" class="table table-bordered table-striped" style="text-align: center;">
+        <thead>
+          <tr>
+            <th colspan = "2"><font size="5" >adb命令</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>获取序列号:</td>
+            <td>adb devices</td>
+          </tr>
+          <tr>
+            <td>品牌:</td>
+            <td>adb shell getprop ro.product.brand</td>
+          </tr>
+          <tr>
+            <td>设备名称:</td>
+            <td>adb shell getprop ro.oppo.market.name</td>
+          </tr>
+          <tr>
+            <td>产品代号:</td>
+            <td>adb shell getprop ro.separate.soft</td>
+          </tr>
+          <tr>
+            <td>产品型号:</td>
+            <td>adb shell getprop ro.product.name</td>
+          </tr>
+          <tr>
+            <td>Android版本:</td>
+            <td>adb shell getprop ro.build.version.release</td>
+          </tr>
+          <tr>
+            <td>OS:</td>
+            <td>adb shell getprop ro.build.version.opporom</td>
+          </tr>
+          <tr>
+            <td>OTA版本:</td>
+            <td>adb shell getprop ro.build.version.ota</td>
+          </tr>
+          <tr>
+            <td>IMEI_GUID_Carrier:</td>
+            <td>adb shell dumpsys engineer --query_indicate_info</td>
+          </tr>
+          <tr>
+            <td>OTA开关(1为开，0或者空为关):</td>
+            <td>adb shell getprop sys.ota.test</td>
+          </tr>
+          <tr>
+            <td>MTK/高通(打印MTK则是MTK，空为高通):	</td>
+            <td>adb shell getprop Build.BRAND</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
 {% endblock %}
 

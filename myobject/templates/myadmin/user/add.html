@@ -2,12 +2,9 @@
 
 {% load static %}
 {% block main_body %}
-<div class="register-box">
-  <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
-  </div>
-
+  <!-- 黑色背景 -->
   <div class="card">
+    <div class="register-box">
     <div class="card-body register-card-body">
       <p class="login-box-msg">添加员工</p>
 
@@ -46,17 +43,15 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
-              </label>
-            </div>
+          <div class="col-4">
+            <button type="reset" class="btn btn-primary btn-block">重置</button>
+          </div>
+          <div class="col-4">
+            <!-- 中间空格使重置按钮和添加按钮在两边展示 -->
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" class="btn btn-primary btn-block">添加</button>
           </div>
           <!-- /.col -->
         </div>
@@ -74,9 +69,9 @@
         </a>
       </div>
 
-      <a href="login.html" class="text-center">I already have a membership</a>
+      <a href="{% url 'myadmin_login' %}" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
+    </div>
   </div><!-- /.card -->
-</div>
 {% endblock %}

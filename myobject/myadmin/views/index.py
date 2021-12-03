@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # from myadmin.models import *
-from myadmin.models import PrototypeInfo, PrototypeHzx, PrototypeJxl, Prototypeztw, Prototypewjy, Prototypelzx, Prototypepyc, Prototypexth, Prototypehwp, Prototypelkx
+from myadmin.models import PrototypeInfo, PrototypeHzx, PrototypeJxl, Prototypeztw, Prototypewjy, Prototypelzx, Prototypepyc, Prototypexth, Prototypehwp, Prototypelkx, User
 # Create your views here.
 from datetime import datetime  # 导入时间
 from django.core.paginator import Paginator  # 导入分页器
@@ -25,25 +25,32 @@ def login(request):
 
 # 执行管理员登入
 def dologin(request):
-    # try:
-    # 根据登入账号获取登录这信息
-    username = request.POST['username']
+    # 根据登入账号获取登录者信息
+    print("账号：", request.POST['username'])
     password = request.POST['password']
-    print(username, password)
-    if username == "admin" and password == "admin123":
-        # return redirect(reverse("myadmin_index"))
-        # 蒋当前登入成功的用户信息以admin为key写入到session中
-        print(request.session['admin'], "session")
-        request.session['admin'] = {'admin': 'admin123'}
-        base = f"myadmin/base{2}.html"
-        context = {"base": base, }
-        return render(request, f'myadmin/user/index0.html', context)
-    else:
-        context = {"info": "账号或密码错误"}
-
-    # except Exception as err:
-    #     print(err)
-    #     context = {"info": "账号或密码错误"}
+    try:
+        # 根据登录账号获取登录者信息
+        user = User.objects.get(username=request.POST['username'])
+        # 判断当前用户是否管理员
+        if user.status == 6:
+            # 判断登录密码是否相同
+            import hashlib
+            md5 = hashlib.md5()
+            s = request.POST['password']+user.password_salt  # 从表单中获取密码并添加干扰值
+            md5.update(s.encode('utf-8'))  # 蒋要产生md5的字符串放进去
+            if user.password_hash == md5.hexdigest():  # 获取md5值
+                print("dologin", md5.hexdigest())
+                # 蒋当前登入成功的用户信息以adminuser为key写入到session中
+                request.session["adminuser"] = user.toDict()
+                # 重定向到后台管理页面
+                return render(request, f'myadmin/user/index0.html', )
+            else:
+                context = {"info": "登录密码错误！"}
+        else:
+            context = {"info": "无效的登录账号！"}
+    except Exception as err:
+        print(err)
+        context = {"info": "登录账号不存在"}
     return render(request, 'myadmin/index/login.html', context)
 
 

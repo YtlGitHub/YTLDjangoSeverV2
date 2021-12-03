@@ -416,8 +416,19 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    {% block main_body%}
-    {% endblock %}
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            {% block main_body%}
+            {% endblock %}
+          </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
   </div>
   <!-- /.content-wrapper -->
 
