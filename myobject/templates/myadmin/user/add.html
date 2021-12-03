@@ -7,7 +7,6 @@
     <div class="register-box">
     <div class="card-body register-card-body">
       <p class="login-box-msg">添加员工</p>
-
       <form action="{% url 'myadmin_user_insert' %}" method="post">
         {% csrf_token %}
         <div class="input-group mb-3">

@@ -1,15 +1,12 @@
 # 员工信息管理的视图文件
 from django.shortcuts import render
+from django.shortcuts import redirect  # 导入重定向函数
+from django.urls import reverse  # 导入重定向函数
 from django.http import HttpResponse
 from myadmin.models import *
 from datetime import datetime
 from django.core.paginator import Paginator  # 导入分页模块
 from django.db.models import Q
-
-
-def index0(request):
-    '''首页'''
-    return render(request, f'myadmin/user/index0.html',)
 
 
 def index(request, pIndex=1):
@@ -53,19 +50,27 @@ def insert(request):
         ob = User()
         ob.username = request.POST['username']
         ob.nickname = request.POST['nickname']
-        import hashlib, random
-        md5 = hashlib.md5()
-        n = random.randint(100000, 999999)
-        s = request.POST['password']+str(n)  # 从表单中获取密码并添加干扰值
-        md5.update(s.encode('utf-8'))  # 蒋要产生md5的字符串放进去
-        ob.password_hash = md5.hexdigest()  # 获取md5值
-        print("insert", md5.hexdigest())
-        ob.password_salt = n
-        ob.status = 1
-        ob.create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        ob.save()
-        context = {'info': '添加成功'}
+        password = request.POST['password']
+        retypePassword = request.POST['retype_password']
+        if password and retypePassword:
+            if password == retypePassword:
+                import hashlib, random
+                md5 = hashlib.md5()
+                n = random.randint(100000, 999999)
+                s = request.POST['password']+str(n)  # 从表单中获取密码并添加干扰值
+                md5.update(s.encode('utf-8'))  # 蒋要产生md5的字符串放进去
+                ob.password_hash = md5.hexdigest()  # 获取md5值
+                print("insert", md5.hexdigest())
+                ob.password_salt = n
+                ob.status = 1
+                ob.create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                ob.save()
+                context = {'info': '添加成功'}
+            else:
+                context = {'info': '添加失败 两次密码不一致'}
+        else:
+            context = {'info': '添加失败 输入为空'}
     except Exception as err:
         print(err)
         context = {'info': '添加失败'}

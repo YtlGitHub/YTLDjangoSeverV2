@@ -6,8 +6,7 @@
   <div class="card">
     <div class="register-box">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">编辑员信息</p>
-
+      <p class="login-box-msg">编辑员工信息</p>
       <form action="{% url 'myadmin_user_update' user.id %}" method="post">
         {% csrf_token %}
         <div class="input-group mb-3">
@@ -80,7 +79,7 @@
 
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" class="btn btn-primary btn-block">保存</button>
           </div>
           <!-- /.col -->
         </div>

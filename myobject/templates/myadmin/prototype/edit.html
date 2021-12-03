@@ -1,0 +1,121 @@
+{% extends 'myadmin/base_user.html' %}
+
+{% load static %}
+{% block main_body %}
+  <!-- 黑色背景 -->
+  <div class="card">
+    <div class="register-box">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">编辑样机信息</p>
+      <form action="{% url 'myadmin_prototype_update' user.id %}" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" name="id_name" readonly class="form-control" value="{{ user.id_name }}" placeholder="项目代号">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">项目代号</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="de" class="form-control" value="{{ user.de }}" placeholder="销售">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">销售</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="brand" class="form-control" value="{{ user.brand }}" placeholder="品牌">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">品牌</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="pv" class="form-control" value="{{ user.pv }}" placeholder="安卓版本">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">安卓版本</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="vos" class="form-control" value="{{ user.os }}" placeholder="OS版本">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">OS版本</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="m_name" class="form-control" value="{{ user.m_name }}" placeholder="手机名">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">手机名</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="IMEI" class="form-control" value="{{ user.IMEI }}" placeholder="IMEI">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">IMEI</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="name" class="form-control" value="{{ user.name }}" placeholder="样机管理员">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">样机管理员</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="user_name" class="form-control" value="{{ user.user_name }}" placeholder="样机借用人">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">样机借用人</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" readonly value="{{ user.borrow_time|date:'Y-m-d H:i:s' }}" placeholder="借用时间">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-times-circle-o">借用时间</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" readonly value="{{ user.still_time|date:'Y-m-d H:i:s' }}" placeholder="归还时间">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-times-circle-o">归还时间</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="remarks" class="form-control" value="{{ user.备注 }}" placeholder="备注">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas ">备注</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">保存</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.form-box -->
+    </div>
+  </div><!-- /.card -->
+{% endblock %}

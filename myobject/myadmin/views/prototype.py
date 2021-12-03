@@ -6,7 +6,7 @@ from itertools import chain  # 导入不同对象链接到一起函数
 from django.core.paginator import Paginator  # 导入分页器
 
 
-def iframe(request):
+def all_prototype(request):
     # return HttpResponse("展示全部信息")
     plist1 = PrototypeInfo.objects.all()
     plist2 = PrototypeHzx.objects.all()
@@ -22,10 +22,10 @@ def iframe(request):
     plist = chain(plist1, plist2, plist3, plist5, plist6, plist7, plist8, plist9, plist10, plist11)
     print('plist:', plist)
     context = {"prototypeList": plist}
-    return render(request, f"myadmin/prototype/iframe.html", context)
+    return render(request, f"myadmin/prototype/prototype.html", context)
 
 
-def pages_iframe(request, n=1, pageNums=5):
+def pages_prototype(request, n=1, pageNums=5):
     '''分页浏览信息'''
     prototypeName = request.GET.get("prototypeName", "")
     print(prototypeName)
@@ -132,4 +132,112 @@ def pages_iframe(request, n=1, pageNums=5):
                # "userName": userName,
                }
     # print(Dashboard)
-    return render(request, "myadmin/prototype/pagesIframe.html", context)
+    return render(request, "myadmin/prototype/pagesPrototype.html", context)
+
+
+def add(request):
+    '''加载信息添加表单'''
+    return render(request, 'myadmin/prototype/add.html')
+
+
+def insert(request):
+    '''执行信息添加'''
+    try:
+        ob = PrototypeInfo()
+        ob.id_name = request.POST['id_name']
+        ob.de = request.POST['de']
+        ob.brand = request.POST['brand']
+        ob.pv = request.POST['pv']
+        ob.os = request.POST['vos']
+        ob.m_name = request.POST['m_name']
+        ob.IMEI = request.POST['IMEI']
+        ob.name = request.POST['name']
+        ob.user_name = request.POST['user_name']
+        ob.borrow_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ob.still_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ob.备注 = request.POST['remarks']
+        ob.save()
+        context = {'info': '添加成功'}
+    except Exception as err:
+        print(err)
+        context = {'info': '添加失败'}
+    return render(request, "myadmin/info.html", context)
+
+
+def delete(request, uid=1):
+    '''执行信息删除'''
+    try:
+        ob = PrototypeInfo.objects.get(id=uid)
+        ob.status = 9
+        ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ob.save()
+        context = {'info': '删除成功'}
+    except Exception as err:
+        print(err)
+        context = {'info': '删除失败'}
+    return render(request, "myadmin/info.html", context)
+
+
+def edit(request, uid=1):
+    '''加载信息编辑表单'''
+    try:
+        ob = PrototypeInfo.objects.get(id=uid)
+        context = {"user": ob}
+        return render(request, 'myadmin/prototype/edit.html', context)
+    except Exception as err:
+        print(err)
+        context = {"info": "没有找到要修改的信息"}
+        return render(request, "myadmin/info.html", context)
+
+
+def update(request, uid=1):
+    '''执行信息编辑'''
+    # try:
+    ob = PrototypeInfo.objects.get(id=uid)
+    ob.id_name = request.POST['id_name']
+    ob.de = request.POST['de']
+    ob.brand = request.POST['brand']
+    ob.pv = request.POST['pv']
+    ob.os = request.POST['vos']
+    ob.m_name = request.POST['m_name']
+    ob.IMEI = request.POST['IMEI']
+    ob.name = request.POST['name']
+    ob.user_name = request.POST['user_name']
+    ob.borrow_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    ob.备注 = request.POST['remarks']
+    ob.save()
+    context = {'info': '修改成功'}
+    # except Exception as err:
+    #     print(err)
+    #     context = {'info': '修改失败'}
+    return render(request, "myadmin/info.html", context)
+
+
+def edit_user_name(request, uid=1):
+    '''加载信息编辑表单'''
+    # try:
+    ob = PrototypeInfo.objects.get(id=uid)
+    userAll = User.objects.all()
+    context = {"user": ob, "userAllList": userAll}
+    return render(request, 'myadmin/prototype/editUserName.html', context)
+    # except Exception as err:
+    #     print(err)
+    #     context = {"info": "没有找到要修改的信息"}
+    #     return render(request, "myadmin/info.html", context)
+
+
+def update_user_name(request, uid=1):
+    '''执行信息编辑'''
+    # try:
+    ob = PrototypeInfo.objects
+    ob = ob.get(id=uid)
+    ob.user_name = request.POST['user_name']
+    ob.borrow_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    ob.备注 = request.POST['remarks']
+    ob.save()
+
+    context = {'info': '修改成功'}
+    # except Exception as err:
+    #     print(err)
+    #     context = {'info': '修改失败'}
+    return render(request, "myadmin/info.html", context)
