@@ -120,7 +120,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = False  # 把USE_TZ = True 改为USE_TZ = False 这样url查询添加修改的时候数据库就不会少8个小时了
 
 
 # Static files (CSS, JavaScript, Images)
