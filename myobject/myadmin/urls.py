@@ -39,4 +39,5 @@ urlpatterns = [
     # ytl信息管理路由
     path('YTLUrl/', ytl.ytl_url, name="myadmin_ytl_ytl_url"),  # 我的常用网址
     path('phoneInfo/', ytl.phone_info, name="myadmin_ytl_phone_info"),  # adb命令查看手机信息
+    path('classNameimgs/', ytl.class_name_imgs, name="myadmin_ytl_class_name_imgs"),  # adb命令查看手机信息
 ]
