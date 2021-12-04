@@ -74,8 +74,8 @@
                       <span style="color: red">未知状态</span>
                     {% endif %}
                   </td>
-                  <td>{{vo.create_at}}</td>
-                  <td>{{vo.update_at}}</td>
+                  <td>{{vo.create_at|date:'Y-m-d H:i:s'}}</td>
+                  <td>{{vo.update_at|date:'Y-m-d H:i:s'}}</td>
                   <td>
                     <a class="btn btn-block btn-primary" href="{% url 'myadmin_user_edit' vo.id %}">
                         <i class="fas fa-edit"></i>

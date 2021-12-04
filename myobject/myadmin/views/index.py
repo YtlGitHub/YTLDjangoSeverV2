@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # from myadmin.models import *
-from myadmin.models import User
+from myadmin.models import User, PrototypeInfo
 # Create your views here.
 from datetime import datetime  # 导入时间
 from django.core.paginator import Paginator  # 导入分页器
@@ -13,7 +13,7 @@ from django.urls import reverse
 
 def index(request):
     '''首页'''
-    return render(request, f'myadmin/index/index.html',)
+    return render(request, f'myadmin/index/index.html')
 
 
 # 管理员登入表单
@@ -24,8 +24,6 @@ def login(request):
 # 执行管理员登入
 def dologin(request):
     # 根据登入账号获取登录者信息
-    print("账号：", request.POST['username'])
-    password = request.POST['password']
     try:
         # 根据登录账号获取登录者信息
         user = User.objects.get(username=request.POST['username'])

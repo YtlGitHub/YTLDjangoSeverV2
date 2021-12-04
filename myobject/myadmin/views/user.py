@@ -109,7 +109,7 @@ def update(request, uid=1):
         ob = User.objects.get(id=uid)
         ob.nickname = request.POST['nickname']
         ob.status = request.POST['status']
-        ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ob.update_at = datetime.now()
         ob.save()
         context = {'info': '修改成功'}
     except Exception as err:

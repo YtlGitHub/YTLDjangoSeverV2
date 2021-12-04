@@ -223,21 +223,60 @@
           <span>{{ request.session.adminuser.nickname }}</span>  <!-- 显示名字 -->
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{% static 'myadmin/dist/img/user2-160x160.jpg' %}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  {{ request.session.adminuser.nickname }}
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">个人信息</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{ request.session.adminuser.create_at }}加入</p>
-              </div>
+<!--          <a href="#" class="dropdown-item">-->
+<!--            &lt;!&ndash; Message Start &ndash;&gt;-->
+<!--            <div class="media">-->
+<!--              <img src="{% static 'myadmin/dist/img/user2-160x160.jpg' %}" alt="User Avatar" class="img-size-50 mr-3 img-circle">-->
+<!--              <div class="media-body">-->
+<!--                <h3 class="dropdown-item-title">-->
+<!--                  {{ request.session.adminuser.nickname }}-->
+<!--                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>-->
+<!--                </h3>-->
+<!--                <p class="text-sm">个人信息</p>-->
+<!--                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{ request.session.adminuser.create_at }}加入</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Message End &ndash;&gt;-->
+<!--          </a>-->
+          <!-- 个人信息2 -->
+          <div class="card card-widget widget-user">
+            <div class="widget-user-header" style="background: url('{% static 'myadmin/dist/img/photo4.jpg' %}') center center;">
+              <h3 class="widget-user-username"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ request.session.adminuser.nickname }}</font></font></h3>
+              <h5 class="widget-user-desc"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ request.session.adminuser.create_at }}加入</font></font></h5>
             </div>
-            <!-- Message End -->
-          </a>
+            <div class="widget-user-image">
+              <img class="img-circle" src="{% static 'myadmin/dist/img/user2-160x160.jpg' %}" alt="用户头像">
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3,200</font></font></h5>
+                    <span class="description-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售量</font></font></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">13,000</font></font></h5>
+                    <span class="description-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">追随者</font></font></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">38</font></font></h5>
+                    <span class="description-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品</font></font></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
           <div class="dropdown-divider"></div>
           <a href="{% url 'myadmin_logout' %}" class="dropdown-item dropdown-footer">退出登录</a>
         </div>
