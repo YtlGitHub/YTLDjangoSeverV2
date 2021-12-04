@@ -63,7 +63,8 @@
       text-decoration: underline;
       }
   </style>
-
+  <!-- class图标css -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -329,15 +330,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'myadmin_prototype_all'  %}" class="nav-link">
-              <i class="fas fa-briefcase nav-icon"></i>
-              <p>查询兼容组已录入样机</p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="{% url 'myadmin_prototype_pages' 1 5 %}" class="nav-link">
-              <i class="fas fa-filter nav-icon"></i>
-              <p>分页查看个人名下样机</p>
+              <i class="fas fa-table nav-icon"></i>
+              <p>查询兼容组已录入样机</p>
             </a>
           </li>
           <li class="nav-item">
@@ -416,6 +411,12 @@
                     <a href="{% url 'myadmin_ytl_class_name_imgs' %}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>class_name_imgs</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://fontawesome.dashgame.com/" class="nav-link" target="目标" title="网址">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>class_name_imgs网址</p>
                     </a>
                   </li>
                 </ul>

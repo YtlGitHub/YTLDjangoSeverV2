@@ -6,63 +6,28 @@ from itertools import chain  # 导入不同对象链接到一起函数
 from django.core.paginator import Paginator  # 导入分页器
 
 
-def all_prototype(request):
-    # return HttpResponse("展示全部信息")
-    plist1 = PrototypeInfo.objects.all()
-    plist2 = PrototypeHzx.objects.all()
-    plist3 = PrototypeJxl.objects.all()
-    plist5 = Prototypeztw.objects.all()
-    plist6 = Prototypewjy.objects.all()
-    plist7 = Prototypelzx.objects.all()
-    plist8 = Prototypepyc.objects.all()
-    plist9 = Prototypexth.objects.all()
-    plist10 = Prototypehwp.objects.all()
-    plist11 = Prototypelkx.objects.all()
-    # plist = plist1 | plist2
-    plist = chain(plist1, plist2, plist3, plist5, plist6, plist7, plist8, plist9, plist10, plist11)
-    print('plist:', plist)
-    context = {"prototypeList": plist}
-    return render(request, f"myadmin/prototype/prototype.html", context)
+# def all_prototype(request):
+#     # return HttpResponse("展示全部信息")
+#     plist1 = PrototypeInfo.objects.all()
+#     plist2 = PrototypeHzx.objects.all()
+#     plist3 = PrototypeJxl.objects.all()
+#     plist5 = Prototypeztw.objects.all()
+#     plist6 = Prototypewjy.objects.all()
+#     plist7 = Prototypelzx.objects.all()
+#     plist8 = Prototypepyc.objects.all()
+#     plist9 = Prototypexth.objects.all()
+#     plist10 = Prototypehwp.objects.all()
+#     plist11 = Prototypelkx.objects.all()
+#     # plist = plist1 | plist2
+#     plist = chain(plist1, plist2, plist3, plist5, plist6, plist7, plist8, plist9, plist10, plist11)
+#     print('plist:', plist)
+#     context = {"prototypeList": plist}
+#     return render(request, f"myadmin/prototype/prototype.html", context)
 
 
 def pages_prototype(request, n=1, pageNums=5):
     '''分页浏览信息'''
-    prototypeName = request.GET.get("prototypeName", "")
-    print(prototypeName)
-    if prototypeName == "杨天龙":
-        pName = PrototypeInfo
-    elif prototypeName == "何振兴":
-        pName = PrototypeHzx
-    elif prototypeName == "蒋小丽":
-        pName = PrototypeJxl
-    elif prototypeName == "郑廷威":
-        pName = Prototypeztw
-    elif prototypeName == "王杰玉":
-        pName = Prototypewjy
-    elif prototypeName == "刘志霞":
-        pName = Prototypelzx
-    elif prototypeName == "彭雨超":
-        pName = Prototypepyc
-    elif prototypeName == "许天华":
-        pName = Prototypexth
-    elif prototypeName == "黄伟鹏":
-        pName = Prototypehwp
-    elif prototypeName == "刘康欣":
-        pName = Prototypelkx
-    else:
-        plist1 = PrototypeInfo.objects.all()
-        plist2 = PrototypeHzx.objects.all()
-        plist3 = PrototypeJxl.objects.all()
-        plist5 = Prototypeztw.objects.all()
-        plist6 = Prototypewjy.objects.all()
-        plist7 = Prototypelzx.objects.all()
-        plist8 = Prototypepyc.objects.all()
-        plist9 = Prototypexth.objects.all()
-        plist10 = Prototypehwp.objects.all()
-        plist11 = Prototypelkx.objects.all()
-        plistAll = chain(plist1, plist2, plist3, plist5, plist6, plist7, plist8, plist9, plist10, plist11)
-        # plistAll = plist1 | plist2 | plist3 | plist4 | plist5 | plist6 | plist7 | plist8 | plist9 | plist10 | plist11
-        pName = PrototypeInfo
+    pName = PrototypeInfo
     idName = request.GET.get("id_name", "")
     userName = request.GET.get("user_name", "")
     de = request.GET.get("de", "")
@@ -71,7 +36,7 @@ def pages_prototype(request, n=1, pageNums=5):
     os = request.GET.get("os", "")
     IMEI = request.GET.get("IMEI", "")
     # "mywhere" 定义一个用于存储搜索条件的变量
-    mywhere = f"?prototypeName={prototypeName}&id_name={idName}&user_name={userName}&de={de}&brand={brand}&pv={pv}&os={os}&IMEI={IMEI}"  # 追加搜索条件
+    mywhere = f"?id_name={idName}&user_name={userName}&de={de}&brand={brand}&pv={pv}&os={os}&IMEI={IMEI}"  # 追加搜索条件
     if userName != "" and idName != "":
         print(idName, userName, "idName,userName,有值")
         # list = PrototypeInfo.objects.filter(Q(id_name__contains=idName) | Q(user_name__contains=userName))  # 模糊 “|”或 查询
@@ -127,7 +92,6 @@ def pages_prototype(request, n=1, pageNums=5):
                "mywhere": mywhere,
                "pCount": pCount,
                "pagesNum": pageNums,
-               "prototypeName": prototypeName,
                # "idName": idName,
                # "userName": userName,
                }
@@ -157,7 +121,7 @@ def insert(request):
         ob.still_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.备注 = request.POST['remarks']
         ob.save()
-        context = {'info': '添加成功'}
+        context = {'info': '添加成功', 'addTo': "继续添加"}
     except Exception as err:
         print(err)
         context = {'info': '添加失败'}
@@ -192,29 +156,29 @@ def edit(request, uid=1):
 
 def update(request, uid=1):
     '''执行信息编辑'''
-    # try:
-    ob = PrototypeInfo.objects.get(id=uid)
-    ob.id_name = request.POST['id_name']
-    ob.de = request.POST['de']
-    ob.brand = request.POST['brand']
-    ob.pv = request.POST['pv']
-    ob.os = request.POST['vos']
-    ob.m_name = request.POST['m_name']
-    ob.IMEI = request.POST['IMEI']
-    ob.name = request.POST['name']
-    ob.user_name = request.POST['user_name']
-    ob.borrow_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    ob.备注 = request.POST['remarks']
-    ob.save()
-    context = {'info': '修改成功'}
-    # except Exception as err:
-    #     print(err)
-    #     context = {'info': '修改失败'}
+    try:
+        ob = PrototypeInfo.objects.get(id=uid)
+        ob.id_name = request.POST['id_name']
+        ob.de = request.POST['de']
+        ob.brand = request.POST['brand']
+        ob.pv = request.POST['pv']
+        ob.os = request.POST['vos']
+        ob.m_name = request.POST['m_name']
+        ob.IMEI = request.POST['IMEI']
+        ob.name = request.POST['name']
+        ob.user_name = request.POST['user_name']
+        ob.borrow_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ob.备注 = request.POST['remarks']
+        ob.save()
+        context = {'info': '修改成功'}
+    except Exception as err:
+        print(err)
+        context = {'info': '修改失败'}
     return render(request, "myadmin/info.html", context)
 
 
 def edit_user_name(request, uid=1):
-    '''加载信息编辑表单'''
+    '''加载转借信息编辑表单'''
     # try:
     ob = PrototypeInfo.objects.get(id=uid)
     userAll = User.objects.all()
@@ -227,17 +191,17 @@ def edit_user_name(request, uid=1):
 
 
 def update_user_name(request, uid=1):
-    '''执行信息编辑'''
-    # try:
-    ob = PrototypeInfo.objects
-    ob = ob.get(id=uid)
-    ob.user_name = request.POST['user_name']
-    ob.borrow_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    ob.备注 = request.POST['remarks']
-    ob.save()
+    '''执行转借信息编辑'''
+    try:
+        ob = PrototypeInfo.objects
+        ob = ob.get(id=uid)
+        ob.user_name = request.POST['user_name']
+        ob.borrow_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ob.备注 = request.POST['remarks']
+        ob.save()
 
-    context = {'info': '修改成功'}
-    # except Exception as err:
-    #     print(err)
-    #     context = {'info': '修改失败'}
+        context = {'info': '转借成功'}
+    except Exception as err:
+        print(err)
+        context = {'info': '转借失败'}
     return render(request, "myadmin/info.html", context)

@@ -26,7 +26,7 @@ urlpatterns = [
     path('logout', index.logout, name="myadmin_logout"),  # 退出登入
 
     # 样机信息管理路由
-    path('prototype/all/', prototype.all_prototype, name="myadmin_prototype_all"),  # 展示全部信息
+    # path('prototype/all/', prototype.all_prototype, name="myadmin_prototype_all"),  # 展示全部信息
     path('prototype/pages/<int:n>/<int:pageNums>/', prototype.pages_prototype, name="myadmin_prototype_pages"),  # 分页展示信息
     path('prototype/add', prototype.add, name="myadmin_prototype_add"),  # 添加表单
     path('prototype/insert', prototype.insert, name="myadmin_prototype_insert"),  # 执行添加

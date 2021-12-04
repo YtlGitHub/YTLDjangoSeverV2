@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # from myadmin.models import *
-from myadmin.models import PrototypeInfo, PrototypeHzx, PrototypeJxl, Prototypeztw, Prototypewjy, Prototypelzx, Prototypepyc, Prototypexth, Prototypehwp, Prototypelkx, User
+from myadmin.models import User
 # Create your views here.
 from datetime import datetime  # 导入时间
 from django.core.paginator import Paginator  # 导入分页器
