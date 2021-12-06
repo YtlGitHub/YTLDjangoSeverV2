@@ -60,7 +60,7 @@
               {% for vo in userlist %}  <!-- for循环打印样机信息 -->
               <tr>
                   <td>{{vo.id}}</td>
-                  <td><img src="{% static 'myadmin/dist/img/myimgs/' %}{{vo.head_portrait}}" width="60"></td>
+                  <td><img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{vo.head_portrait}}" width="60"></td>
                   <td>{{vo.username}}</td>
                   <td>{{vo.nickname}}</td>
                   <td>

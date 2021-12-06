@@ -18,7 +18,9 @@ urlpatterns = [
     path('user/insert', user.insert, name="myadmin_user_insert"),  # 执行添加
     path('user/del/<int:uid>', user.delete, name="myadmin_user_delete"),  # 删除
     path('user/edit/<int:uid>', user.edit, name="myadmin_user_edit"),  # 编辑
+    path('user/editPersonal/<int:uid>', user.edit_personal, name="myadmin_user_edit_personal"),  # 只能编辑个人信息，不能编辑他人信息路由
     path('user/update/<int:uid>', user.update, name="myadmin_user_update"),  # 修改
+    path('user/updatePersonal/<int:uid>', user.update_personal, name="myadmin_user_update_personal"),  # 执行修改个人信息路由
 
     # 后台管理员登入、退出路由
     path('login', index.login, name="myadmin_login"),  # 加载登入表单

@@ -10,6 +10,9 @@
       <form action="{% url 'myadmin_user_update' user.id %}" method="post">
         {% csrf_token %}
         <div class="input-group mb-3">
+            <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ user.head_portrait }}" width="60" alt="用户头像">
+        </div>
+        <div class="input-group mb-3">
           <input type="text" name="username" readonly class="form-control" value="{{ user.username }}" placeholder="账号">
           <div class="input-group-append">
             <div class="input-group-text">

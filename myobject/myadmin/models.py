@@ -13,10 +13,11 @@ class User(models.Model):
     create_at = models.DateTimeField(default=datetime.now)  # 创建时间
     update_at = models.DateTimeField(default=datetime.now)  # 修改时间
     head_portrait = models.CharField(max_length=100)  # 头像
+    personal_signature = models.CharField(max_length=100)  # 个性签名
 
     def toDict(self):
         print('create_at', self.create_at, 'update_at', self.update_at)
-        return {'id': self.id, 'username': self.username, 'nickname': self.nickname, 'password_hash': self.password_hash, 'password_salt': self.password_salt, 'status': self.status, 'create_at': self.create_at.strftime("%Y-%m-%d %H:%M:%S"), 'update_at': self.update_at.strftime("%Y-%m-%d %H:%M:%S"), "head_portrait": self.head_portrait}
+        return {'id': self.id, 'username': self.username, 'nickname': self.nickname, 'password_hash': self.password_hash, 'password_salt': self.password_salt, 'status': self.status, 'create_at': self.create_at.strftime("%Y-%m-%d %H:%M:%S"), 'update_at': self.update_at.strftime("%Y-%m-%d %H:%M:%S"), "head_portrait": self.head_portrait, "personal_signature": self.personal_signature}
 
     class Meta:
         db_table = "user"  # 指定表面
