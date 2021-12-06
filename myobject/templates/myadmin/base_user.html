@@ -228,7 +228,7 @@
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header text-white" style="background: url('{% static 'myadmin/dist/img/photo4.jpg' %}') center center;)"><!--class="widget-user-header bg-info"：黄色背景、bg-info：蓝色背景、text-white：自定义图片背景(class="widget-user-header text-white" style="background: url('{% static 'myadmin/dist/img/photo1.png' %})' center center;)"-->
               <div class="widget-user-image">
-                <img class="img-circle elevation-2" src="{% static 'myadmin/dist/img/user2-160x160.jpg' %}" alt="用户头像">
+                <img class="img-circle elevation-2" src="{% static 'myadmin/dist/img/myimgs/' %}{{ request.session.adminuser.head_portrait }}" alt="用户头像">
               </div>
               <!-- /.widget-user-image -->
               <h3 class="widget-user-username"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ request.session.adminuser.nickname }}</font></font></h3><!-- /.昵称 -->
@@ -286,7 +286,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{% static 'myadmin/dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+          <img src="{% static 'myadmin/dist/img/myimgs/' %}{{ request.session.adminuser.head_portrait }}" class="img-circle elevation-2" alt="用户头像">
         </div>
         <div class="info">
           <a href="/admin" class="d-block">{{ request.session.adminuser.nickname }}-管理员</a>

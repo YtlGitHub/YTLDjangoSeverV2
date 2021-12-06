@@ -47,6 +47,7 @@
             <thead>
               <tr>
                 <th>ID号</th>
+                <th>头像</th>
                 <th>账号</th>
                 <th>昵称</th>
                 <th>状态</th>
@@ -59,6 +60,7 @@
               {% for vo in userlist %}  <!-- for循环打印样机信息 -->
               <tr>
                   <td>{{vo.id}}</td>
+                  <td><img src="{% static 'myadmin/dist/img/myimgs/' %}{{vo.head_portrait}}" width="60"></td>
                   <td>{{vo.username}}</td>
                   <td>{{vo.nickname}}</td>
                   <td>
