@@ -33,10 +33,10 @@ urlpatterns = [
     path('prototype/add', prototype.add, name="myadmin_prototype_add"),  # 添加表单
     path('prototype/insert', prototype.insert, name="myadmin_prototype_insert"),  # 执行添加
     path('prototype/del/<int:uid>', prototype.delete, name="myadmin_prototype_delete"),  # 删除
-    path('prototype/edit/<int:uid>', prototype.edit, name="myadmin_prototype_edit"),  # 编辑
-    path('prototype/update/<int:uid>', prototype.update, name="myadmin_prototype_update"),  # 修改
-    path('prototype/editUserName/<int:uid>', prototype.edit_user_name, name="myadmin_prototype_edit_user_name"),  # 只编辑名字
-    path('prototype/updateUserName/<int:uid>', prototype.update_user_name, name="myadmin_prototype_update_user_name"),  # 只修改名字
+    path('prototype/edit/<int:uid>', prototype.edit, name="myadmin_prototype_edit"),  # 编辑表单
+    path('prototype/update/<int:uid>', prototype.update, name="myadmin_prototype_update"),  # 执行编辑修改信息
+    path('prototype/editUserName/<int:uid>', prototype.edit_user_name, name="myadmin_prototype_edit_user_name"),  # 只能编辑自己名字表单
+    path('prototype/updateUserName/<int:uid>', prototype.update_user_name, name="myadmin_prototype_update_user_name"),  # 执行只能编辑修改自己名字
 
     # ytl信息管理路由
     path('YTLUrl/', ytl.ytl_url, name="myadmin_ytl_ytl_url"),  # 我的常用网址

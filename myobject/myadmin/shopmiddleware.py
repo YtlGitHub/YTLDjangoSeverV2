@@ -2,6 +2,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 import re
+from myadmin.models import PrototypeInfo
 
 
 class ShopMiddleware:
@@ -9,7 +10,7 @@ class ShopMiddleware:
         self.get_response = get_response
         print("ShopMiddleware")
 
-    def __call__(self, request):  # 中间件执行的时候必须调用的方法，没测请求的时候会调用
+    def __call__(self, request):  # 中间件执行的时候必须调用的方法，每次请求的时候都会调用
         path = request.path
         print("url:", path)
 

@@ -49,7 +49,7 @@
                 <th>ID号</th>
                 <th>头像</th>
                 <th>账号</th>
-                <th>昵称</th>
+                <th>昵称/个性签名</th>
                 <th>状态</th>
                 <th>添加时间</th>
                 <th>修改时间</th>
@@ -62,7 +62,10 @@
                   <td>{{vo.id}}</td>
                   <td><img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{vo.head_portrait}}" width="60"></td>
                   <td>{{vo.username}}</td>
-                  <td>{{vo.nickname}}</td>
+                  <td>
+                    {{vo.nickname}}<br/>
+                    个性签名：{{vo.personal_signature}}
+                  </td>
                   <td>
                     {% if vo.status == 1 %}
                       <span style="color: #28a745">正常</span>

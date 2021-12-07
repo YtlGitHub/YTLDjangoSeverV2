@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from myadmin.models import *
 from itertools import chain  # 导入不同对象链接到一起函数
 from django.core.paginator import Paginator  # 导入分页器
+# from django.db.models import Sum  # 导入求和函数
 
 
 # def all_prototype(request):
@@ -23,6 +24,19 @@ from django.core.paginator import Paginator  # 导入分页器
 #     print('plist:', plist)
 #     context = {"prototypeList": plist}
 #     return render(request, f"myadmin/prototype/prototype.html", context)
+
+
+# 把样机表信息存储在session中
+def storage_prototype(request):
+    # 获取用户id，用id获取用户信息，在写入到session中
+    sessionusername = request.session["adminuser"]["username"]  # 获取session里面的用户名
+    pusername = PrototypeInfo.objects  # 对session里面获取的名字在prototype_info样机表里面模糊查询，即对name字段进行包含查询
+    request.session["prototype"] = {
+        "prototypeCount": pusername.filter(user_name__contains=sessionusername).count(),
+        "dedomestic": pusername.filter(user_name__contains=sessionusername, de__contains="内销").count(),
+        "deexport": pusername.filter(user_name__contains=sessionusername, de__contains="外销").count(),
+    }
+    print(request.session["prototype"])
 
 
 def pages_prototype(request, n=1, pageNums=5):
@@ -121,6 +135,8 @@ def insert(request):
         ob.still_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.备注 = request.POST['remarks']
         ob.save()
+        # 把样机表信息存储在session中
+        storage_prototype(request)
         context = {'info': '添加成功', 'addTo': "继续添加"}
     except Exception as err:
         print(err)
@@ -129,12 +145,14 @@ def insert(request):
 
 
 def delete(request, uid=1):
-    '''执行信息删除'''
+    '''执行信息删除还没写'''
     try:
         ob = PrototypeInfo.objects.get(id=uid)
         ob.status = 9
         ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.save()
+        # 把样机表信息存储在session中
+        storage_prototype(request)
         context = {'info': '删除成功'}
     except Exception as err:
         print(err)
@@ -170,6 +188,8 @@ def update(request, uid=1):
         ob.borrow_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.备注 = request.POST['remarks']
         ob.save()
+        # 把样机表信息存储在session中
+        storage_prototype(request)
         context = {'info': '修改成功'}
     except Exception as err:
         print(err)
@@ -199,7 +219,8 @@ def update_user_name(request, uid=1):
         ob.borrow_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.备注 = request.POST['remarks']
         ob.save()
-
+        # 把样机表信息存储在session中
+        storage_prototype(request)
         context = {'info': '转借成功'}
     except Exception as err:
         print(err)

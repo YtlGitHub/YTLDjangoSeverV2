@@ -11,6 +11,13 @@ from django.db.models import Q
 from PIL import Image  # 导入图片压缩模块
 
 
+# 获取用户id，用id获取用户信息，再写入到session中---
+def storage_user(request):
+    uid = request.session["adminuser"]["id"]
+    user = User.objects.get(id=uid)
+    request.session["adminuser"] = user.toDict()
+
+
 def index(request, pIndex=1):
     '''浏览信息'''
     umod = User.objects
@@ -27,7 +34,7 @@ def index(request, pIndex=1):
         mywhere.append("status="+status)
     # 执行分页处理
     pIndex = int(pIndex)
-    page = Paginator(ulist, 5)  # 以每2条数据分页
+    page = Paginator(ulist, 5)  # 以每5条数据分页
     maxpages = page.num_pages  # 获取最大页数
     # 判断当前页是否越界
     if pIndex < 1:
@@ -68,6 +75,8 @@ def insert(request):
                 ob.create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 ob.save()
+                # 获取用户id，用id获取用户信息，在写入到session中---
+                storage_user(request)
                 context = {'info': '添加成功'}
             else:
                 context = {'info': '添加失败 两次密码不一致'}
@@ -86,6 +95,8 @@ def delete(request, uid=1):
         ob.status = 9
         ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.save()
+        # 获取用户id，用id获取用户信息，在写入到session中---
+        storage_user(request)
         context = {'info': '删除成功'}
     except Exception as err:
         print(err)
@@ -112,6 +123,8 @@ def update(request, uid=1):
         ob.nickname = request.POST['nickname']
         ob.update_at = datetime.now()
         ob.save()
+        # 获取用户id，用id获取用户信息，在写入到session中---
+        storage_user(request)
         context = {'info': '修改成功'}
     except Exception as err:
         print(err)
@@ -143,9 +156,8 @@ def update_personal(request, uid=1):
             ob.personal_signature = request.POST['personal-signature']
             ob.update_at = datetime.now()
             ob.save()
-            uid = request.session["adminuser"]["id"]
-            user = User.objects.get(id=uid)
-            request.session["adminuser"] = user.toDict()
+            # 获取用户id，用id获取用户信息，在写入到session中---
+            storage_user(request)
             context = {'info': '修改个人信息成功'}
             return render(request, "myadmin/info.html", context)
         fileName = str(datetime.now().strftime("%Y%m%d-%H%M%S")) + '.' + myFile.name.split('.').pop()
@@ -173,9 +185,8 @@ def update_personal(request, uid=1):
         ob.personal_signature = request.POST['personal-signature']
         ob.update_at = datetime.now()
         ob.save()
-        uid = request.session["adminuser"]["id"]
-        user = User.objects.get(id=uid)
-        request.session["adminuser"] = user.toDict()
+        # 获取用户id，用id获取用户信息，在写入到session中---
+        storage_user(request)
         context = {'info': '修改个人信息成功'}
     except Exception as err:
         print(err)
