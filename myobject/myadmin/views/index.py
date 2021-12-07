@@ -9,10 +9,12 @@ from django.db.models import Q # 导入 &与 |或 模糊查询
 from itertools import chain  # 导入不同对象链接到一起函数
 from django.shortcuts import redirect
 from django.urls import reverse
+from myadmin.views.prototype import storage_prototype  # 导入自定义的函数(把样机信息存储在session)
 
 
 def index(request):
     '''首页'''
+    storage_prototype(request)  # 调用在主页就可以显示最新的数据了
     return render(request, f'myadmin/index/index.html')
 
 

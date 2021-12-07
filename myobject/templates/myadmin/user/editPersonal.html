@@ -11,6 +11,8 @@
       <form action="{% url 'myadmin_user_update_personal' request.session.adminuser.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="input-group mb-3">
+          <!-- 隐藏一个头像名，用type="hidden"表示 -->
+          <input type="hidden" name="head_portrait" value="{{ request.session.adminuser.head_portrait }}"/>
           <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }}" width="60" alt="用户头像"><br/>
           修改头像：<input type="file" name="pic">
         </div>
