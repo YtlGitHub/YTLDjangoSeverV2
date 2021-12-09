@@ -228,7 +228,7 @@
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header text-white" style="background: url('{% static 'myadmin/dist/img/photo4.jpg' %}') center center;)"><!--class="widget-user-header bg-info"：黄色背景、bg-info：蓝色背景、text-white：自定义图片背景(class="widget-user-header text-white" style="background: url('{% static 'myadmin/dist/img/photo1.png' %})' center center;)"-->
               <div class="widget-user-image">
-                <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }} " alt="用户头像" width="60">
+                <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }}" alt="用户头像" width="60">
               </div>
               <!-- /.widget-user-image -->
               <h3 class="widget-user-username"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ request.session.adminuser.nickname }}</font></font></h3><!-- /.昵称 -->

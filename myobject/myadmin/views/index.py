@@ -15,7 +15,11 @@ from myadmin.views.prototype import storage_prototype  # 导入自定义的函�
 def index(request):
     '''首页'''
     storage_prototype(request)  # 调用在主页就可以显示最新的数据了
-    return render(request, f'myadmin/index/index.html')
+    umod = User.objects
+    ulist = umod.filter(status__lt=9)  # 查询状态小于9的数据
+
+    context = {"userlist": ulist.order_by('-id')[:8], "NewMembers": ulist.count()}
+    return render(request, f'myadmin/index/index.html', context)
 
 
 # 管理员登入表单

@@ -58,8 +58,8 @@
           <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">New Members</span>
-            <span class="info-box-number">2,000</span>
+            <span class="info-box-text">新成员</span>
+            <span class="info-box-number">{{ NewMembers }}</span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -262,18 +262,18 @@
             <!-- DIRECT CHAT -->
             <div class="card direct-chat direct-chat-warning">
               <div class="card-header">
-                <h3 class="card-title">Direct Chat</h3>
+                <h3 class="card-title">直接聊天</h3>
 
                 <div class="card-tools">
                   <span title="3 New Messages" class="badge badge-warning">3</span>
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
+                    <i class="fas fa-minus"></i> <!-- －图标 -->
                   </button>
                   <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i>
+                    <i class="fas fa-comments"></i> <!-- 微信图标 -->
                   </button>
                   <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
+                    <i class="fas fa-times"></i> <!-- x图标 -->
                   </button>
                 </div>
               </div>
@@ -284,7 +284,7 @@
                   <!-- Message. Default to the left -->
                   <div class="direct-chat-msg">
                     <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-left">Alexander Pierce</span>
+                      <span class="direct-chat-name float-left">名字1</span>
                       <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
@@ -300,7 +300,7 @@
                   <!-- Message to the right -->
                   <div class="direct-chat-msg right">
                     <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-right">Sarah Bullock</span>
+                      <span class="direct-chat-name float-right">名字2</span>
                       <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
@@ -316,7 +316,7 @@
                   <!-- Message. Default to the left -->
                   <div class="direct-chat-msg">
                     <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-left">Alexander Pierce</span>
+                      <span class="direct-chat-name float-left">名字1</span>
                       <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
@@ -332,7 +332,7 @@
                   <!-- Message to the right -->
                   <div class="direct-chat-msg right">
                     <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-right">Sarah Bullock</span>
+                      <span class="direct-chat-name float-right">名字2</span>
                       <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
@@ -467,10 +467,10 @@
             <!-- USERS LIST -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Latest Members</h3>
+                <h3 class="card-title">最新成员</h3>
 
                 <div class="card-tools">
-                  <span class="badge badge-danger">8 New Members</span>
+                  <span class="badge badge-danger">最近添加的8名新成员</span>
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
@@ -482,46 +482,13 @@
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <ul class="users-list clearfix">
+                  {% for user in userlist %}
                   <li>
-                    <img src="{% static 'myadmin/dist/img/user1-128x128.jpg' %}" alt="User Image">
-                    <a class="users-list-name" href="#">Alexander Pierce</a>
-                    <span class="users-list-date">Today</span>
+                    <img src="{% static 'uploads/user/headPortrait/' %}{{ user.head_portrait }}" alt="User Image">
+                    <a class="users-list-name" href="#">{{ user.username }}</a>
+                    <span class="users-list-date">{{ user.create_at|date:'Y-m-d' }}</span>
                   </li>
-                  <li>
-                    <img src="{% static 'myadmin/dist/img/user8-128x128.jpg' %}" alt="User Image">
-                    <a class="users-list-name" href="#">Norman</a>
-                    <span class="users-list-date">Yesterday</span>
-                  </li>
-                  <li>
-                    <img src="{% static 'myadmin/dist/img/user7-128x128.jpg' %}" alt="User Image">
-                    <a class="users-list-name" href="#">Jane</a>
-                    <span class="users-list-date">12 Jan</span>
-                  </li>
-                  <li>
-                    <img src="{% static 'myadmin/dist/img/user6-128x128.jpg' %}" alt="User Image">
-                    <a class="users-list-name" href="#">John</a>
-                    <span class="users-list-date">12 Jan</span>
-                  </li>
-                  <li>
-                    <img src="{% static 'myadmin/dist/img/user2-160x160.jpg' %}" alt="User Image">
-                    <a class="users-list-name" href="#">Alexander</a>
-                    <span class="users-list-date">13 Jan</span>
-                  </li>
-                  <li>
-                    <img src="{% static 'myadmin/dist/img/user5-128x128.jpg' %}" alt="User Image">
-                    <a class="users-list-name" href="#">Sarah</a>
-                    <span class="users-list-date">14 Jan</span>
-                  </li>
-                  <li>
-                    <img src="{% static 'myadmin/dist/img/user4-128x128.jpg' %}" alt="User Image">
-                    <a class="users-list-name" href="#">Nora</a>
-                    <span class="users-list-date">15 Jan</span>
-                  </li>
-                  <li>
-                    <img src="{% static 'myadmin/dist/img/user3-128x128.jpg' %}" alt="User Image">
-                    <a class="users-list-name" href="#">Nadia</a>
-                    <span class="users-list-date">15 Jan</span>
-                  </li>
+                  {% endfor %}
                 </ul>
                 <!-- /.users-list -->
               </div>

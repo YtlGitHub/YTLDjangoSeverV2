@@ -121,6 +121,7 @@ def update(request, uid=1):
     try:
         ob = User.objects.get(id=uid)
         ob.nickname = request.POST['nickname']
+        ob.status = request.POST['status']
         ob.update_at = datetime.now()
         ob.save()
         # 获取用户id，用id获取用户信息，在写入到session中---

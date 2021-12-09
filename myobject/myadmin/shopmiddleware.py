@@ -24,6 +24,15 @@ class ShopMiddleware:
                 # 重定向到登入页
                 return redirect(reverse("myadmin_login"))
 
+        # 定义前台不登入也可直接访问的url列表
+        urllist = ['login', 'logout', 'dologin']
+        # 判断当前请求url地址是否以''空开头,并且不再urllist中，才做是否登入判断
+        if re.match(r'^/prototype', path) and (path not in urllist):
+            # 判断是否登入(在session中没有adminuser)
+            if 'adminuser' not in request.session:
+                # 重定向到登入页
+                return redirect(reverse("myweb_login"))
+
         response = self.get_response(request)
 
         # Code to be executed for each request/response after
