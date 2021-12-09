@@ -1,0 +1,17 @@
+{% extends 'myweb/base_userFront .html' %}
+
+{% load static %}
+{% block main_body %}
+  <!-- 黑色背景 -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">{{info}}</h3>
+    </div>
+    <div class="card-header">
+      <a href="{% url 'myweb_login' %}"><h3 class="card-title">{{login}}</h3></a>
+    </div>
+    <div class="card-header">
+      <a href="{% url 'myadmin_login' %}"><h3 class="card-title">{{loginAdmin}}</h3></a>
+    </div>
+  </div>
+{% endblock %}

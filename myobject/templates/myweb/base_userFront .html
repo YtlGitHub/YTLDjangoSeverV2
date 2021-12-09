@@ -1,0 +1,528 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>杨天龙样机后台管理系统</title>
+
+  <script type="text/javascript">
+    //自定义执行信息删除提示判断，参数uu是成功的删除url地址
+    function doDel(uu){
+      if (confirm("确定要删除？")){
+        //网页跳转
+        window.location=uu;
+      }
+    }
+    //<button></button>
+    function deDel(url){
+      Modal.confirm({
+        msg: "确定要删除吗？",
+        title: "信息提示",
+        btnok: "确定",
+        btbcl: "取消",
+      }).on(function (e){
+        if(e){
+          window.location.href=url;
+        }
+        })
+    }
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+
+  <!-- 暗色模式下的样式设置 -->
+  <style>
+    /* form表单背景颜色和边框颜色设置 */
+    #demo {
+      background-color: #343a40;
+      color: green;
+      caret-color: green;
+    }
+    #demo:hover { border:1px solid green; }
+    /* 超链接颜色设置 */
+    td a {
+      color: white;
+      text-decoration: none;
+      }
+    td a:hover {
+      color: rgb(0,255,255);
+      text-decoration: underline;
+      }
+  </style>
+  <!-- class图标css -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'myweb/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{% static 'myweb/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+    <!-- DataTables -->
+  <link rel="stylesheet" href="{% static 'myweb/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'myweb/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'myweb/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'myweb/dist/css/adminlte.min.css' %}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static 'myweb/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+</head>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="{% static 'myweb/dist/img/AdminLTELogo.png' %}" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-dark">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{% url 'myweb_index' %}" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          <i class="fas fa-search"></i>
+        </a>
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="{% static 'myweb/dist/img/user1-128x128.jpg' %}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="{% static 'myweb/dist/img/user8-128x128.jpg' %}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="{% static 'myweb/dist/img/user3-128x128.jpg' %}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+
+      <!-- 个人信息 -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <span>游客</span>  <!-- 状态栏显示账号名 -->
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <!-- 个人信息模板1 -->
+          <div class="card card-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header text-white" style="background: url('{% static 'myweb/dist/img/photo4.jpg' %}') center center;)"><!--class="widget-user-header bg-info"：黄色背景、bg-info：蓝色背景、text-white：自定义图片背景(class="widget-user-header text-white" style="background: url('{% static 'myweb/dist/img/photo1.png' %})' center center;)"-->
+              <div class="widget-user-image">
+                <img class="img-circle elevation-2" src="{% static '\myadmin\dist\img\user2-160x160.jpg' %}" alt="用户头像" width="60">
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class="widget-user-username"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">游客</font></font></h3><!-- /.昵称 -->
+              <h6 class="widget-user-desc"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ request.session.adminuser.create_at }}加入</font></font></h6><!-- /.加入时间 -->
+              <h6 class="widget-user-desc"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">个性签名：{{ request.session.adminuser.personal_signature }}</font></font></h6><!-- /.个性签名 -->
+            </div>
+            {% comment %}
+            <div class="card-footer p-0">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="#" class="nav-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    项目 </font></font><span class="float-right badge bg-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">31</font></font></span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    内销 </font></font><span class="float-right badge bg-info"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{request.session.prototype.dedomestic}}</font></font></span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    外销 </font></font><span class="float-right badge bg-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{request.session.prototype.deexport}}</font></font></span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    样机总数 </font></font><span class="float-right badge bg-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{request.session.prototype.prototypeCount}}</font></font></span>
+                  </a>
+                </li>
+                <!-- 编辑个人信息 -->
+                <li class="nav-item">
+                  <a href="{% url 'myweb_user_edit_personal' request.session.adminuser.id %}" class="nav-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    编辑个人信息 </font></font>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            {% endcomment %}
+          </div>
+          <div class="dropdown-divider"></div><!-- /.分割线 -->
+          {#<a href="{% url 'myweb_logout' %}" class="dropdown-item dropdown-footer">退出登录</a>#}
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{% url 'myweb_is_admin' %}" class="brand-link" title="登入后台管理">
+      <img src="{% static 'myweb/dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">MyAdmin</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static '\myadmin\dist\img\user2-160x160.jpg' %}" class="img-circle elevation-2" alt="用户头像">
+        </div>
+        <div class="info">
+          <!-- 登入到后台 -->
+          <a href="{% url 'myweb_index' %}" class="d-block" title="登入账号">游客</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <!-- <li class="nav-item menu-open"> 这个后面加个 menu-open 设置默认打开转态-->
+          <!-- <li class="nav-item"> 这个后面删除 menu-open 设置默认收起转态-->
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                控制面板
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'myweb_index' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>亮色模式 v1</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'myweb_index'  %}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>暗色模式 v2</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'myweb_index' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>简单模式 v3</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- 杨天龙样机查询开始 -->
+          <li class="nav-header">样机管理系统</li>
+          <li class="nav-item">
+            <a href="{% url 'myweb_prototype_pages' 1 5 %}" class="nav-link">
+              <i class="fas fa-table nav-icon"></i>
+              <p>查询兼容组已录入样机</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                常用网址 V1
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    我的常用网址 V2
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="https://4280pt0319.zicp.fun/" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>ytl个人网站</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://ytlgithub.github.io/" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>github-YTLBlog</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://ytlserver.imdo.co/" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>ytlserver-YTLBlog</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="http://159.75.33.27/" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>IP-YTLBlog</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://fanyi.baidu.com/" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>百度翻译</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://blog.csdn.net/wode_124/article/details/83099723" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Django中MySQL数据查询</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://www.bilibili.com/video/BV1pq4y1W7a1?p=15" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Django视频</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://fontawesome.dashgame.com/" class="nav-link" target="目标" title="网址">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>class_name_imgs网址</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <!-- /杨天龙样机查询结束 -->
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>数据表</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="">首页</a></li>
+              <li class="breadcrumb-item active">数据表</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            {% block main_body%}
+            {% endblock %}
+          </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.2.0-rc
+    </div>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="{% static 'myweb/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'myweb/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{% static 'myweb/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'myweb//plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'myweb/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'myweb/dist/js/adminlte.min.js' %}"></script>
+<!-- overlayScrollbars -->
+<script src="{% static 'myweb/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="{% static 'myweb/plugins/jquery-mousewheel/jquery.mousewheel.js' %}"></script>
+<script src="{% static 'myweb/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/jquery-mapael/jquery.mapael.min.js' %}"></script>
+<script src="{% static 'myweb/plugins/jquery-mapael/maps/usa_states.min.js' %}"></script>
+<!-- ChartJS -->
+<script src="{% static 'myweb/plugins/chart.js/Chart.min.js' %}"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'myweb/dist/js/demo.js' %}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{% static 'myweb/dist/js/pages/dashboard2.js' %}"></script>
+</body>
+</html>
