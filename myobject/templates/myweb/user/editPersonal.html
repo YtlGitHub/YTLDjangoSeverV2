@@ -13,8 +13,12 @@
         <div class="input-group mb-3">
           <!-- 隐藏一个头像名，用type="hidden"表示 -->
           <input type="hidden" name="head_portrait" value="{{ request.session.adminuser.head_portrait }}"/>
-          <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }}" width="60" alt="用户头像"><br/>
-          修改头像：<input type="file" name="pic">
+		  {{ if request.session.adminuser.head_portrait == "" }}
+          <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}user2-160x160.jpg" width="60" alt="用户头像"><br/>
+          {{ else }}
+		  <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }}" width="60" alt="用户头像"><br/>
+		  {{ endif }}
+		  修改头像：<input type="file" name="pic">
         </div>
         <div class="input-group mb-3">
           <input type="text" name="username" readonly class="form-control" value="{{ request.session.adminuser.username }}" placeholder="账号">
