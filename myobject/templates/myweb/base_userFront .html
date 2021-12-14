@@ -285,9 +285,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{% url 'myweb_is_admin' %}" class="brand-link" title="登入后台管理">
+    <a href="{% url 'myweb_index' %}" class="brand-link" title="登入后台管理">
       <img src="{% static 'myweb/dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">MyAdmin</span>
+      <span class="brand-text font-weight-light">My Admin</span>
     </a>
 
     <!-- Sidebar -->
@@ -322,11 +322,12 @@
                with font-awesome or any other icon font library -->
           <!-- <li class="nav-item menu-open"> 这个后面加个 menu-open 设置默认打开转态-->
           <!-- <li class="nav-item"> 这个后面删除 menu-open 设置默认收起转态-->
+          <li class="nav-header">样机管理系统</li>
           <li class="nav-item">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-home"></i>
               <p>
-                控制面板
+                首页
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -334,30 +335,40 @@
               <li class="nav-item">
                 <a href="{% url 'myweb_index' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>亮色模式 v1</p>
+                  <p>首页 v1</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{% url 'myweb_index'  %}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>暗色模式 v2</p>
+                  <p>首页 v2</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{% url 'myweb_index' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>简单模式 v3</p>
+                  <p>首页 v3</p>
                 </a>
               </li>
             </ul>
           </li>
           <!-- 杨天龙样机查询开始 -->
-          <li class="nav-header">样机管理系统</li>
           <li class="nav-item">
-            <a href="{% url 'myweb_prototype_pages' 1 5 %}" class="nav-link">
-              <i class="fas fa-table nav-icon"></i>
-              <p>查询兼容组已录入样机</p>
+            <a href="#" class="nav-link {{myweb_prototype_pages_active}}">
+              <i class="nav-icon fas fa-user-secret"></i>
+              <p>
+                样机管理
+                <i class="right fas fa-angle-left"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'myweb_prototype_pages' 1 5 %}" class="nav-link {{myweb_prototype_pages_active}}">
+                  <i class="fas fa-table nav-icon"></i>
+                  <p>查询兼容组已录入样机</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">

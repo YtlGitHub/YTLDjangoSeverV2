@@ -18,7 +18,7 @@ def index(request):
     umod = User.objects
     ulist = umod.filter(status__lt=9)  # 查询状态小于9的数据
 
-    context = {"userlist": ulist.order_by('-id')[:8], "NewMembers": ulist.count()}
+    context = {"userlist": ulist.order_by('-id')[:8], "NewMembers": ulist.count(), "myadmin_index_active": "active"}
     return render(request, f'myadmin/index/index.html', context)
 
 

@@ -17,23 +17,8 @@ def index(request):
     # return HttpResponse("欢迎进入前台的大堂点餐端！<a></a>")
     storage_prototype(request)  # 样机信息写入session调用在主页就可以显示最新的数据了
     storage_user(request)  # 用户信息写入session调用在主页就可以显示最新的数据了
-    return render(request, "myweb/index/index.html")
-
-
-# 判断是否管理员账号
-def is_admin(request):
-    try:
-        ustatus = request.session["adminuser"]["status"]
-        print("ustatus", ustatus)
-        if ustatus == 6:
-            return redirect(reverse("myadmin_index"))
-        else:
-            context = {"info": "你不是管理员无法进入管理员页面"}
-            return render(request, 'myweb/info.html', context)  # 登入后台管理员
-    except Exception as err:
-        print(err)
-    context = {"info": "请先登录", "login": "登录", "loginAdmin": "登录后台"}
-    return render(request, 'myweb/infoFront.html', context)  # 登入后台管理员
+    context = {"myweb_index_active": "active"}
+    return render(request, "myweb/index/index.html", context)
 
 
 # 员工登入表单

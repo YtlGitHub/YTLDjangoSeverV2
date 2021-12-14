@@ -7,6 +7,7 @@ class User(models.Model):
     '''自定义User类'''
     username = models.CharField(max_length=50)  # 员工账号
     nickname = models.CharField(max_length=50)  # 昵称
+    sex = models.IntegerField()  # 性别：1男/2女
     password_hash = models.CharField(max_length=100)  # 密码
     password_salt = models.CharField(max_length=50)  # 密码干扰值
     status = models.IntegerField(default=1)  # 状态：1正常/2禁用/6管理员/9删除

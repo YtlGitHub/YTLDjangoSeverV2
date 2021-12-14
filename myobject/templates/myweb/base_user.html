@@ -228,7 +228,11 @@
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header text-white" style="background: url('{% static 'myweb/dist/img/photo4.jpg' %}') center center;)"><!--class="widget-user-header bg-info"：黄色背景、bg-info：蓝色背景、text-white：自定义图片背景(class="widget-user-header text-white" style="background: url('{% static 'myweb/dist/img/photo1.png' %})' center center;)"-->
               <div class="widget-user-image">
-                <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }} " alt="用户头像" width="60">
+                {% if request.session.adminuser.head_portrait == "" %}
+                  <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}user2-160x160.jpg" alt="用户头像" width="60">
+                {% else %}
+                  <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }}" alt="用户头像" width="60">
+                {% endif %}
               </div>
               <!-- /.widget-user-image -->
               <h3 class="widget-user-username"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ request.session.adminuser.nickname }}</font></font></h3><!-- /.昵称 -->
@@ -284,9 +288,9 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <!-- 登入到后台 -->
-    <a href="{% url 'myweb_is_admin' %}" class="brand-link">
-      <img src="{% static 'myweb/dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin</span>
+    <a href="{% url 'myadmin_index' %}" class="brand-link">
+	  <img src="{% static 'myadmin/dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">MY Admin</span>
     </a>
 
     <!-- Sidebar -->
@@ -294,7 +298,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }}" class="img-circle elevation-2" alt="用户头像">
+			{% if request.session.adminuser.head_portrait == "" %}
+			  <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}user2-160x160.jpg" alt="用户头像" width="60">
+			{% else %}
+			  <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }}" alt="用户头像" width="60">
+			{% endif %}
         </div>
         <div class="info">
           <a href="" class="d-block">{{ request.session.adminuser.nickname }}</a>
@@ -320,45 +328,43 @@
                with font-awesome or any other icon font library -->
           <!-- <li class="nav-item menu-open"> 这个后面加个 menu-open 设置默认打开转态-->
           <!-- <li class="nav-item"> 这个后面删除 menu-open 设置默认收起转态-->
+          <li class="nav-header">样机管理系统</li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="{% url 'myweb_index'  %}" class="nav-link {{myweb_index_active}}"> <!-- <li class="nav-link active"> 这个后面加个 active 设置默认选中状态-->
+              <i class="nav-icon fas fa-home"></i>
               <p>
-                控制面板
+                首页
+              </p>
+            </a>
+          </li>
+          <!-- 杨天龙样机查询开始 -->
+          <li class="nav-item {{myweb_prototype_pages_menu_open}}">
+            <a href="#" class="nav-link {{myweb_prototype_pages_active}}{{myweb_prototype_pages_active_me}}">
+              <i class="nav-icon fas fa-user-secret"></i>
+              <p>
+                样机管理
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{% url 'myweb_index' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>亮色模式 v1</p>
+                <a href="{% url 'myweb_prototype_pages' 1 5 %}" class="nav-link {{myweb_prototype_pages_active}}">
+                  &nbsp;
+                  <i class="fas fa-table nav-icon"></i>
+                  <p>查询兼容组已录入样机</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{% url 'myweb_index'  %}" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>暗色模式 v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'myweb_index' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>简单模式 v3</p>
+                <a href="{% url 'myweb_prototype_pages_me' 1 5 %}" class="nav-link {{myweb_prototype_pages_active_me}}">
+                  &nbsp;
+                  <i class="fas fa-user nav-icon"></i>
+                  <p>我的借用</p>
                 </a>
               </li>
             </ul>
           </li>
-          <!-- 杨天龙样机查询开始 -->
-          <li class="nav-header">样机管理系统</li>
-          <li class="nav-item">
-            <a href="{% url 'myweb_prototype_pages' 1 5 %}" class="nav-link">
-              <i class="fas fa-table nav-icon"></i>
-              <p>查询兼容组已录入样机</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{myweb_ytl_ytl_url_menu_open}}{{myweb_ytl_phone_info_menu_open}}">
+            <a href="#" class="nav-link {{myweb_ytl_ytl_url_active}}{{myweb_ytl_phone_info_active}}">
               <i class="nav-icon fas fa-file"></i>
               <p>
                 常用网址 V1
@@ -367,7 +373,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="{% url 'myweb_ytl_ytl_url' %}" class="nav-link {{myweb_ytl_ytl_url_active}}">
+                  &nbsp;
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>公司常用网址 V2</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'myweb_ytl_phone_info' %}" class="nav-link {{myweb_ytl_phone_info_active}}">
+                  &nbsp;
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>查找手机信息 V2</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="#" class="nav-link">
+                  &nbsp;
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     我的常用网址 V2
@@ -377,48 +398,56 @@
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="https://4280pt0319.zicp.fun/" class="nav-link">
+                      &nbsp;&nbsp;
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>ytl个人网站</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="https://ytlgithub.github.io/" class="nav-link">
+                      &nbsp;&nbsp;
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>github-YTLBlog</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="https://ytlserver.imdo.co/" class="nav-link">
+                      &nbsp;&nbsp;
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>ytlserver-YTLBlog</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="http://159.75.33.27/" class="nav-link">
+                      &nbsp;&nbsp;
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>IP-YTLBlog</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="https://fanyi.baidu.com/" class="nav-link">
+                      &nbsp;&nbsp;
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>百度翻译</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="https://blog.csdn.net/wode_124/article/details/83099723" class="nav-link">
+                      &nbsp;&nbsp;
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Django中MySQL数据查询</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="https://www.bilibili.com/video/BV1pq4y1W7a1?p=15" class="nav-link">
+                      &nbsp;&nbsp;
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Django视频</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="https://fontawesome.dashgame.com/" class="nav-link" target="目标" title="网址">
+                      &nbsp;&nbsp;
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>class_name_imgs网址</p>
                     </a>

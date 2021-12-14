@@ -10,7 +10,11 @@
       <form action="{% url 'myadmin_user_update' user.id %}" method="post">
         {% csrf_token %}
         <div class="input-group mb-3">
-            <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ user.head_portrait }}" width="60" alt="用户头像">
+            {% if user.head_portrait == "" %}
+            <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}user2-160x160.jpg" width="60" alt="用户头像">
+            {% else %}
+            <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{user.head_portrait}}" width="60" alt="用户头像">
+            {% endif %}
         </div>
         <div class="input-group mb-3">
           <input type="text" name="username" readonly class="form-control" value="{{ user.username }}" placeholder="账号">
@@ -28,6 +32,7 @@
             </div>
           </div>
         </div>
+	
         <div class="input-group mb-3">
 <!--          <input type="text" name="status" class="form-control"  value="{{ user.status }}" placeholder="状态">-->
           <div class="btn-group btn-group-toggle" data-toggle="buttons">

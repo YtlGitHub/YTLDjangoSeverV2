@@ -30,13 +30,16 @@ urlpatterns = [
     # 样机信息管理路由
     # path('prototype/all/', prototype.all_prototype, name="myadmin_prototype_all"),  # 展示全部信息
     path('prototype/pages/<int:n>/<int:pageNums>/', prototype.pages_prototype, name="myadmin_prototype_pages"),  # 分页展示信息
+    path('prototype/pages/me/<int:n>/<int:pageNums>/', prototype.pages_prototype_me, name="myadmin_prototype_pages_me"),  # 分页展示信息
     path('prototype/add', prototype.add, name="myadmin_prototype_add"),  # 添加表单
     path('prototype/insert', prototype.insert, name="myadmin_prototype_insert"),  # 执行添加
     path('prototype/del/<int:uid>', prototype.delete, name="myadmin_prototype_delete"),  # 删除
     path('prototype/edit/<int:uid>', prototype.edit, name="myadmin_prototype_edit"),  # 编辑表单
     path('prototype/update/<int:uid>', prototype.update, name="myadmin_prototype_update"),  # 执行编辑修改信息
     path('prototype/editUserName/<int:uid>', prototype.edit_user_name, name="myadmin_prototype_edit_user_name"),  # 只能编辑自己名字表单
+    path('prototype/editStillTime/<int:uid>', prototype.edit_still_time, name="myadmin_prototype_edit_still_time"),  # 归还时间表单路由
     path('prototype/updateUserName/<int:uid>', prototype.update_user_name, name="myadmin_prototype_update_user_name"),  # 执行只能编辑修改自己名字
+    path('prototype/updateStillTime/<int:uid>', prototype.update_still_time, name="myadmin_prototype_update_still_time"),  # 归还时间执行路由
 
     # ytl信息管理路由
     path('YTLUrl/', ytl.ytl_url, name="myadmin_ytl_ytl_url"),  # 我的常用网址

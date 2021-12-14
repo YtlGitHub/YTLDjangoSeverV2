@@ -111,7 +111,12 @@
                             </a>
                         </td>
                         <td>{{prototype.borrow_time}}</td>
-                        <td>{{prototype.still_time}}</td>
+                        <td>
+                            <a href="{% url 'myweb_prototype_edit_still_time' prototype.id %}" class="btn btn-block btn-primary">
+                                <i class="fas fa-edit"></i>
+                                <span class="">{{prototype.still_time|date:'Y-m-d H:i:s'}}</span>
+                            </a>
+                        </td>
                         <td>{{prototype.备注}}</td>
                         <td>
                             <a href="{% url 'myweb_prototype_edit' prototype.id %}" class="btn btn-block btn-primary">

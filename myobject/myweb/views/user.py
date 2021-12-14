@@ -73,11 +73,17 @@ def update_personal(request, uid=1):
         context = {'info': '修改个人信息成功'}
         # 判断并删除老照片
         if myFile:
-            os.remove(f"./static/uploads/user/headPortrait/{headPortraitName}")
+            try:
+                os.remove(f"./static/uploads/user/headPortrait/{headPortraitName}")
+            except Exception as err:
+                print(err)
     except Exception as err:
         print(err)
         context = {'info': '修改失败'}
         # 判断并删除新图片
         if myFile:
-            os.remove(f"./static/uploads/user/headPortrait/{fileName}")
+            try:
+                os.remove(f"./static/uploads/user/headPortrait/{fileName}")
+            except Exception as err:
+                print(err)
     return render(request, "myweb/info.html", context)
