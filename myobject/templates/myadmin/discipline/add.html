@@ -1,0 +1,88 @@
+<!-- 编辑样机信息 -->
+  <div class="modal fade" id="discipline-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document"> <!-- class="modal-dialog modal-dialog-centered"后面加： modal-dialog-centered 就会在电脑屏幕中间显示，不加就在电脑屏幕中上显示-->
+      <!-- 要想有上次图片文件功能，后面必须加类属性：enctype="multipart/form-data" 否则上传是不行的-->
+      <form action="{% url 'myadmin_discipline_insert' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">添加记录</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body register-card-body">
+              <div class="input-group mb-3">
+              <input type="text" name="name" readonly class="form-control" value="" placeholder="姓名">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas ">姓名</span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="job_number" class="form-control" value="" placeholder="工号">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas ">工号</span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="supplier" class="form-control" value="" placeholder="部门">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas ">部门</span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="violation" class="form-control" value="" placeholder="记录">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas ">记录</span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="time" class="form-control" value="" placeholder="时间">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas ">时间</span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="actual" class="form-control" value="" placeholder="实际">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas ">实际</span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="fine" class="form-control" value="" placeholder="罚款">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas ">是否罚款</span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="money" class="form-control" value="" placeholder="罚款金额">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas ">罚款金额</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            <button type="submit" class="btn btn-primary">确定</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<!-- /.编辑样机信息  -->

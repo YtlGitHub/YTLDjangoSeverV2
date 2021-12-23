@@ -26,7 +26,7 @@ def index(request, pIndex=1):
     # 获取并判断搜索条件
     kw = request.GET.get("keyword", None)
     if kw:
-        ulist = ulist.filter(Q(username__contains=kw) | Q(nickname__contains=kw) | Q(status__contains=kw))
+        ulist = ulist.filter(Q(username__contains=kw) | Q(nickname__contains=kw) | Q(status__contains=kw) | Q(phone__contains=kw))
         mywhere.append("keyword="+kw)
     status = request.GET.get('status', '')
     if status != '':
@@ -123,6 +123,7 @@ def update(request, uid=1):
         ob = User.objects.get(id=uid)
         ob.nickname = request.POST['nickname']
         ob.status = request.POST['status']
+        ob.phone = request.POST['phone']
         ob.update_at = datetime.now()
         ob.save()
         # 获取用户id，用id获取用户信息，在写入到session中---
@@ -134,21 +135,10 @@ def update(request, uid=1):
     return render(request, "myadmin/info.html", context)
 
 
-def edit_personal(request, uid=1):
-    '''加载个人信息编辑表单'''
-    try:
-        ob = User.objects.get(id=uid)
-        context = {"user": ob}
-        return render(request, 'myadmin/user/editPersonal.html', context)
-    except Exception as err:
-        print(err)
-        context = {"info": "没有找到要修改的信息"}
-        return render(request, "myadmin/info.html", context)
-
-
 def update_personal(request, uid=1):
     '''执行个人信息编辑'''
     try:
+        print("myadmin执行个人信息编辑")
         # 获取原图名字
         headPortraitName = request.POST["head_portrait"]
         print("headPortraitName:", headPortraitName)
@@ -183,6 +173,8 @@ def update_personal(request, uid=1):
         ob.head_portrait = fileName  # 修改新的头像名字
         ob.nickname = request.POST['nickname']
         ob.personal_signature = request.POST['personal-signature']
+        print("电话号码", request.POST['phone'])
+        ob.phone = request.POST['phone']
         ob.update_at = datetime.now()
         ob.save()
         # 获取用户id，用id获取用户信息，在写入到session中---

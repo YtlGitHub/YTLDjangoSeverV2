@@ -1,10 +1,14 @@
 # 样机信息管理的视图文件
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from myadmin.models import *
 from itertools import chain  # 导入不同对象链接到一起函数
 from django.core.paginator import Paginator  # 导入分页器
 # from django.db.models import Sum  # 导入求和函数
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.http import JsonResponse  # 导入弹框模块
+from django.contrib import messages  # 导入弹框模块
 
 
 # 把样机表信息存储在session中
@@ -80,7 +84,8 @@ def pages_prototype(request, n=1, pageNums=5):
     elif n > p.num_pages:
         n = p.num_pages
     plist = p.page(n)  # 当前的页
-    context = {"prototypeList": plist,
+    userAll = User.objects.all()
+    context = {"prototypeList": list,
                "n": n,
                "pagelist": p.page_range,
                "pnumpages": p.num_pages,
@@ -89,6 +94,7 @@ def pages_prototype(request, n=1, pageNums=5):
                "pagesNum": pageNums,
                "myweb_prototype_pages_menu_open": "menu-open",
                "myweb_prototype_pages_active": "active",
+               "userAllList": userAll,
                # "idName": idName,
                # "userName": userName,
                }
@@ -160,7 +166,8 @@ def pages_prototype_me(request, n=1, pageNums=5):
     elif n > p.num_pages:
         n = p.num_pages
     plist = p.page(n)  # 当前的页
-    context = {"prototypeList": plist,
+    userAll = User.objects.all()
+    context = {"prototypeList": list,
                "n": n,
                "pagelist": p.page_range,
                "pnumpages": p.num_pages,
@@ -169,6 +176,7 @@ def pages_prototype_me(request, n=1, pageNums=5):
                "pagesNum": pageNums,
                "myweb_prototype_pages_menu_open": "menu-open",
                "myweb_prototype_pages_active_me": "active",
+               "userAllList": userAll,
                # "idName": idName,
                # "userName": userName,
                }
@@ -222,11 +230,22 @@ def update(request, uid=1):
         ob.save()
         # 把样机表信息存储在session中
         storage_prototype(request)
+        info = "修改成功"
         context = {'info': '修改成功'}
+        messages.info(request, '修改成功!')
     except Exception as err:
         print(err)
+        info = "修改失败"
         context = {'info': '修改失败'}
-    return render(request, "myweb/info.html", context)
+        messages.info(request, '修改失败!')
+    # return render(request, "myweb/info.html", context)
+    # return JsonResponse(context)
+    return redirect(reverse("myweb_prototype_pages", kwargs={"n": 1, "pageNums": 5})+"?")
+    # return HttpResponseRedirect('/profiles/' + in_username)
+    import json
+    # if request.method == "POST":
+    #     pass
+    # return HttpResponse(f"<script>window.alert('{info}')</script>")
 
 
 def edit_user_name(request, uid=1):
@@ -254,10 +273,13 @@ def update_user_name(request, uid=1):
         # 把样机表信息存储在session中
         storage_prototype(request)
         context = {'info': '转借成功'}
+        messages.info(request, '转借成功!')
     except Exception as err:
         print(err)
         context = {'info': '转借失败'}
-    return render(request, "myweb/info.html", context)
+        messages.info(request, '转借失败!')
+    # return render(request, "myweb/info.html", context)
+    return redirect(reverse("myweb_prototype_pages", kwargs={"n": 1, "pageNums": 5}))
 
 
 def edit_still_time(request, uid=1):
@@ -284,7 +306,10 @@ def update_still_time(request, uid=1):
         # 把样机表信息存储在session中
         storage_prototype(request)
         context = {'info': '归还成功'}
+        messages.info(request, '归还成功!')
     except Exception as err:
         print(err)
         context = {'info': '归还失败'}
-    return render(request, "myweb/info.html", context)
+        messages.info(request, '归还失败!')
+    # return render(request, "myweb/info.html", context)
+    return redirect(reverse("myweb_prototype_pages", kwargs={"n": 1, "pageNums": 5}))

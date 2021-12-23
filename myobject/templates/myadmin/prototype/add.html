@@ -1,111 +1,133 @@
-{% extends 'myadmin/base_user.html' %}
-
-{% load static %}
-{% block main_body %}
-  <!-- 黑色背景 -->
-  <div class="card">
-    <div class="register-box">
-    <div class="card-body register-card-body">
-      <p class="login-box-msg">添加样机</p>
-
-      <form action="{% url 'myadmin_prototype_insert' %}" method="post">
+<!-- 添加样机信息 -->
+  <div class="modal fade" id="prototype-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document"> <!-- class="modal-dialog modal-dialog-centered"后面加： modal-dialog-centered 就会在电脑屏幕中间显示，不加就在电脑屏幕中上显示-->
+      <!-- 要想有上次图片文件功能，后面必须加类属性：enctype="multipart/form-data" 否则上传是不行的-->
+      <form action="{% url 'myadmin_prototype_insert' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="input-group mb-3">
-          <input type="text" name="id_name" class="form-control" placeholder="项目代号">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">添加样机</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body register-card-body">
+            <div class="input-group mb-3">
+              <input type="text" name="id_name" class="form-control" placeholder="项目代号">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="de" class="form-control" placeholder="销售">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="brand" class="form-control" placeholder="品牌">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="pv" class="form-control" placeholder="安卓版本">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="vos" class="form-control" placeholder="OS版本">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="m_name" class="form-control" placeholder="机型名">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="IMEI" class="form-control" placeholder="IMEI">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="name" class="form-control" placeholder="样机管理员">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="user_name" class="form-control" placeholder="样机借用人">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="remarks" class="form-control" placeholder="备注">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-edit"></span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="de" class="form-control" placeholder="销售">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="brand" class="form-control" placeholder="品牌">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="pv" class="form-control" placeholder="安卓版本">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="vos" class="form-control" placeholder="OS版本">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="m_name" class="form-control" placeholder="机型名">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="IMEI" class="form-control" placeholder="IMEI">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="name" class="form-control" placeholder="样机管理员">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="user_name" class="form-control" placeholder="样机借用人">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="remarks" class="form-control" placeholder="备注">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-edit"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-4">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">取消</button>
             <button type="reset" class="btn btn-primary btn-block">重置</button>
+            <button type="submit" class="btn btn-primary">确定</button>
           </div>
-          <div class="col-4">
-            <!-- 中间空格使重置按钮和添加按钮在两边展示 -->
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">添加</button>
-          </div>
-          <!-- /.col -->
         </div>
       </form>
     </div>
-    <!-- /.form-box -->
-    </div>
-  </div><!-- /.card -->
-{% endblock %}
+  </div>
+<!-- /.添加样机信息  -->
+
+<!--  &lt;!&ndash; 黑色背景 &ndash;&gt;-->
+<!--  <div class="card">-->
+<!--    <div class="register-box">-->
+<!--    <div class="card-body register-card-body">-->
+<!--      <p class="login-box-msg">添加样机</p>-->
+
+<!--      <form action="{% url 'myadmin_prototype_insert' %}" method="post">-->
+<!--        {% csrf_token %}-->
+
+<!--        <div class="row">-->
+<!--          <div class="col-4">-->
+<!--            <button type="reset" class="btn btn-primary btn-block">重置</button>-->
+<!--          </div>-->
+<!--          <div class="col-4">-->
+<!--            &lt;!&ndash; 中间空格使重置按钮和添加按钮在两边展示 &ndash;&gt;-->
+<!--          </div>-->
+<!--          &lt;!&ndash; /.col &ndash;&gt;-->
+<!--          <div class="col-4">-->
+<!--            <button type="submit" class="btn btn-primary btn-block">添加</button>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; /.col &ndash;&gt;-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; /.form-box &ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>&lt;!&ndash; /.card &ndash;&gt;-->

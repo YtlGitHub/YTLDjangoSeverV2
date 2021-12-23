@@ -99,6 +99,7 @@ def pages_prototype(request, n=1, pageNums=5):
     elif n > p.num_pages:
         n = p.num_pages
     plist = p.page(n)  # 当前的页
+    userAll = User.objects.all()
     context = {"prototypeList": plist,
                "n": n,
                "pagelist": p.page_range,
@@ -108,6 +109,7 @@ def pages_prototype(request, n=1, pageNums=5):
                "pagesNum": pageNums,
                "myadmin_prototype_pages_menu_open": "menu-open",
                "myadmin_prototype_pages_active": "active",
+               "userAllList": userAll,
                # "idName": idName,
                # "userName": userName,
                }
@@ -179,6 +181,7 @@ def pages_prototype_me(request, n=1, pageNums=5):
     elif n > p.num_pages:
         n = p.num_pages
     plist = p.page(n)  # 当前的页
+    userAll = User.objects.all()
     context = {"prototypeList": plist,
                "n": n,
                "pagelist": p.page_range,
@@ -188,6 +191,7 @@ def pages_prototype_me(request, n=1, pageNums=5):
                "pagesNum": pageNums,
                "myadmin_prototype_pages_menu_open": "menu-open",
                "myadmin_prototype_pages_active_me": "active",
+               "userAllList": userAll,
                # "idName": idName,
                # "userName": userName,
                }

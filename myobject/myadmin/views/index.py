@@ -10,11 +10,13 @@ from itertools import chain  # 导入不同对象链接到一起函数
 from django.shortcuts import redirect
 from django.urls import reverse
 from myadmin.views.prototype import storage_prototype  # 导入自定义的函数(把样机信息存储在session)
+from myadmin.views.user import storage_user  # 导入用户信息写入session调用在主页就可以显示最新的数据了
 
 
 def index(request):
     '''首页'''
     storage_prototype(request)  # 调用在主页就可以显示最新的数据了
+    storage_user(request)  # 用户信息写入session调用在主页就可以显示最新的数据了
     umod = User.objects
     ulist = umod.filter(status__lt=9)  # 查询状态小于9的数据
 

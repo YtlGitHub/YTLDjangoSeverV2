@@ -5,45 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>杨天龙样机后台管理系统</title>
-
-  <script type="text/javascript">
-    //自定义执行信息删除提示判断，参数uu是成功的删除url地址
-    function doDel(uu){
-      if (confirm("确定要删除？")){
-        //网页跳转
-        window.location=uu;
-      }
-    }
-    //<button></button>
-    function deDel(url){
-      Modal.confirm({
-        msg: "确定要删除吗？",
-        title: "信息提示",
-        btnok: "确定",
-        btbcl: "取消",
-      }).on(function (e){
-        if(e){
-          window.location.href=url;
-        }
-        })
-    }
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
-  </script>
-
   <!-- 暗色模式下的样式设置 -->
   <style>
     /* form表单背景颜色和边框颜色设置 */
@@ -81,6 +42,91 @@
   <link rel="stylesheet" href="{% static 'myadmin/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<!-- 编辑个人信息 -->
+  <div class="modal fade" id="myadmin_user_update_personal-tk" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document"> <!-- class="modal-dialog modal-dialog-centered"后面加： modal-dialog-centered 就会中间显示-->
+
+      <form action="{% url 'myadmin_user_update_personal' request.session.adminuser.id %}" method="post" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">编辑员工信息</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="card-body register-card-body">
+          <!-- 要想有上次图片文件功能，后面必须加类属性：enctype="multipart/form-data" 否则上传是不行的-->
+            <div class="modal-body">
+              {% csrf_token %}
+              <div class="input-group mb-3">
+                <!-- 隐藏一个头像名，用type="hidden"表示 -->
+                <input type="hidden" name="head_portrait" value="{{ request.session.adminuser.head_portrait }}"/>
+                {% if request.session.adminuser.head_portrait == "" %}
+                <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}user2-160x160.jpg" width="60" alt="用户头像"><br/>
+                {% else %}
+                <img class="img-circle elevation-2" src="{% static 'uploads/user/headPortrait/' %}{{ request.session.adminuser.head_portrait }}" width="60" alt="用户头像"><br/>
+                {% endif %}
+                修改头像：<input type="file" name="pic">
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" name="username" readonly class="form-control" value="{{ request.session.adminuser.username }}" placeholder="账号">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas ">账号</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" name="nickname" class="form-control" value="{{ request.session.adminuser.nickname }}" placeholder="昵称">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas ">昵称</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" name="personal-signature" class="form-control" value="{{ request.session.adminuser.personal_signature }}" placeholder="个性签名">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas ">个性签名</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" name="phone" class="form-control" value="{{ request.session.adminuser.phone }}" placeholder="电话号码">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas ">电话号码</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" readonly value="{{ request.session.adminuser.create_at }}" placeholder="添加时间">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-times-circle-o">添加时间</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" readonly value="{{ request.session.adminuser.update_at }}" placeholder="修改时间">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-times-circle-o">修改时间</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="submit" class="btn btn-primary">保存更改</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+<!-- /.编辑个人信息  -->
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -263,9 +309,11 @@
                 </li>
                 <!-- 编辑个人信息 -->
                 <li class="nav-item">
-                  <a href="{% url 'myadmin_user_edit_personal' request.session.adminuser.id %}" class="nav-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                    编辑个人信息 </font></font>
-                  </a>
+                  <span class="float-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myadmin_user_update_personal-tk">
+                      编辑个人信息
+                    </button>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -365,6 +413,24 @@
                   &nbsp;
                   <i class="fas fa-user nav-icon"></i>
                   <p>我的借用</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item {{myadmin_discipline_menu_open}}">
+            <a href="#" class="nav-link {{myadmin_discipline_active}}">
+              <i class="nav-icon fas fa-user-secret"></i>
+              <p>
+                信息记录管理
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'myadmin_discipline' 1 5 %}" class="nav-link {{myadmin_discipline_active}}">
+                  &nbsp;
+                  <i class="fas fa-table nav-icon"></i>
+                  <p>违规记录</p>
                 </a>
               </li>
             </ul>
@@ -496,6 +562,27 @@
       </div><!-- /.container-fluid -->
     </section>
     <section class="content">
+      <!-- 提示信息div公用外面的div -->
+      <div class="dataTables_wrapper dt-bootstrap4">
+          <div class="row">
+              <!-- 左边对齐显示 -->
+              <div class="col-sm-12 col-md-6">
+              </div>
+              <!-- 右边中间对齐显示div -->
+              <div class="col-sm-12 col-md-6">
+                  {% if messages %}
+                  <ul class="btn btn-warning toastsDefaultWarning">
+                      {% for message in messages %}
+                      <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                          {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                          {{ message }}
+                      </li>
+                      {% endfor %}
+                  </ul>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
@@ -562,6 +649,8 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="{% static 'myadmin/dist/js/demo.js' %}"></script>
+<!-- 我的js -->
+<script src="{% static 'myadmin/dist/js/demo-ytl.js' %}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{% static 'myadmin/dist/js/pages/dashboard2.js' %}"></script>
 </body>

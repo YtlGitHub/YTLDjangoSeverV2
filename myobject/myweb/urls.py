@@ -14,7 +14,6 @@ urlpatterns = [
     path('prototype/index', index.index, name="myweb_index"),
 
     # 员工信息管理路由
-    path('prototype/user/editPersonal/<int:uid>', user.edit_personal, name="myweb_user_edit_personal"),  # 只能编辑个人信息，不能编辑他人信息路由
     path('prototype/user/updatePersonal/<int:uid>', user.update_personal, name="myweb_user_update_personal"),  # 执行修改个人信息路由
 
     # 后台管理员登入、退出路由

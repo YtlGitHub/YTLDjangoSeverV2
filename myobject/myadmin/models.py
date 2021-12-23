@@ -11,6 +11,7 @@ class User(models.Model):
     password_hash = models.CharField(max_length=100)  # 密码
     password_salt = models.CharField(max_length=50)  # 密码干扰值
     status = models.IntegerField(default=1)  # 状态：1正常/2禁用/6管理员/9删除
+    phone = models.CharField(max_length=11)  # 电话号码
     create_at = models.DateTimeField(default=datetime.now)  # 创建时间
     update_at = models.DateTimeField(default=datetime.now)  # 修改时间
     head_portrait = models.CharField(max_length=100)  # 头像
@@ -18,7 +19,7 @@ class User(models.Model):
 
     def toDict(self):
         print('create_at', self.create_at, 'update_at', self.update_at)
-        return {'id': self.id, 'username': self.username, 'nickname': self.nickname, 'password_hash': self.password_hash, 'password_salt': self.password_salt, 'status': self.status, 'create_at': self.create_at.strftime("%Y-%m-%d %H:%M:%S"), 'update_at': self.update_at.strftime("%Y-%m-%d %H:%M:%S"), "head_portrait": self.head_portrait, "personal_signature": self.personal_signature}
+        return {'id': self.id, 'username': self.username, 'nickname': self.nickname, 'password_hash': self.password_hash, 'password_salt': self.password_salt, 'status': self.status, 'phone': self.phone, 'create_at': self.create_at.strftime("%Y-%m-%d %H:%M:%S"), 'update_at': self.update_at.strftime("%Y-%m-%d %H:%M:%S"), "head_portrait": self.head_portrait, "personal_signature": self.personal_signature}
 
     class Meta:
         db_table = "user"  # 指定表面
@@ -47,7 +48,7 @@ class PrototypeInfo(models.Model):
     '''自定义PrototypeInfo表对应的Model类'''
     # 定义属性：主键默认自增id可不写
     id = models.AutoField(primary_key=True)
-    id_name = models.IntegerField('项目代号')
+    id_name = models.CharField('项目代号', max_length=25)
     de = models.CharField('销售', max_length=25)
     brand = models.CharField('品牌', max_length=25)
     pv = models.IntegerField('安卓版本', max_length=2)
@@ -91,7 +92,7 @@ class Discipline(models.Model):  # 违规记录
     violation = models.CharField('记录', max_length=255)
     time = models.DateTimeField('时间', max_length=255)
     actual = models.CharField('实际', max_length=50, blank=True)
-    fine = models.CharField('罚款', max_length=10, blank=True)
+    fine = models.CharField('是否罚款', max_length=10, blank=True)
     money = models.IntegerField('金额', blank=True)
 
     # def __str__(self):

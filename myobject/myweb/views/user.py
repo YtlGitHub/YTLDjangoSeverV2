@@ -9,6 +9,7 @@ import os
 from django.core.paginator import Paginator  # 导入分页模块
 from django.db.models import Q
 from PIL import Image  # 导入图片压缩模块
+from django.conf import settings  # 导入上传图片保存路径模块
 
 
 # 获取用户id，用id获取用户信息，再写入到session中---
@@ -18,26 +19,15 @@ def storage_user(request):
     request.session["adminuser"] = user.toDict()
 
 
-def edit_personal(request, uid=1):
-    '''加载个人信息编辑表单'''
-    try:
-        ob = User.objects.get(id=uid)
-        context = {"user": ob}
-        return render(request, 'myweb/user/editPersonal.html', context)
-    except Exception as err:
-        print(err)
-        context = {"info": "没有找到要修改的信息"}
-        return render(request, "myweb/info.html", context)
-
-
 def update_personal(request, uid=1):
     '''执行个人信息编辑'''
     try:
+        print("myweb执行个人信息编辑")
         # 获取原图名字
         headPortraitName = request.POST["head_portrait"]
         # 先做图片上传处理
         myFile = request.FILES.get("pic", None)  # 获取头像信息
-        print(myFile)
+        print('获取头像信息', myFile)
         if not myFile:
             fileName = headPortraitName
         else:
@@ -65,6 +55,8 @@ def update_personal(request, uid=1):
         ob = User.objects.get(id=uid)
         ob.head_portrait = fileName  # 修改新的头像名字
         ob.nickname = request.POST['nickname']  # 昵称
+        print("电话号码：", request.POST['phone'])
+        ob.phone = request.POST['phone']  # 电话号码
         ob.personal_signature = request.POST['personal-signature']  # 个性签名
         ob.update_at = datetime.now()
         ob.save()

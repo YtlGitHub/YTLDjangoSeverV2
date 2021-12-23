@@ -68,6 +68,14 @@
           </div>
         </div>
         <div class="input-group mb-3">
+            <input type="text" name="phone" class="form-control" value="{{ user.phone }}" placeholder="电话号码">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas ">电话号码</span>
+              </div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
           <input type="text" class="form-control" readonly value="{{ user.create_at|date:'Y-m-d H:i:s' }}" placeholder="添加时间">
           <div class="input-group-append">
             <div class="input-group-text">

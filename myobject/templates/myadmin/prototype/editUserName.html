@@ -1,72 +1,94 @@
-{% extends 'myadmin/base_user.html' %}
+<!--editFile =  function(prototype.id, prototype.id_name, prototype.user_name, prototype.borrow_time, prototype.still_time|date:'Y-m-d H:i:s, prototype.备注){-->
+<!--        $("#prototype.id").val(prototype.id);-->
+<!--        $("#prototype.id_name").val(prototype.id_name);-->
+<!--        $("#prototype.user_name").val(prototype.user_name);-->
+<!--        $("#prototype.borrow_time").val(prototype.still_time|date:'Y-m-d H:i:s);-->
+<!--        $("#prototype.备注").html($('.edit_btn').eq(i-1).attr("prototype.备注"));-->
+<!--    }-->
 
-{% load static %}
-{% block main_body %}
-  <!-- 黑色背景 -->
-  <div class="card">
-    <div class="register-box">
-    <div class="card-body register-card-body">
-      <p class="login-box-msg">借用人名字</p>
-      <form action="{% url 'myadmin_prototype_update_user_name' user.id %}" method="post">
+
+<!--$("#editUserName").modal("hide");-->
+<!--    function Values(obj){-->
+<!--        $("#prototype.user_name").val(obj);-->
+<!--    }-->
+
+<!--<script type="text/javascript">-->
+<!--    $(function(){-->
+<!--        $('#editUserName').modal("hide");-->
+<!--    });-->
+<!--    function values(ID){-->
+<!--            $('#prototype-id').val(ID);-->
+<!--    }-->
+<!--</script>-->
+
+<!-- 转借信息编辑 -->
+  <div class="modal fade" id="a{{prototype.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document"> <!-- class="modal-dialog modal-dialog-centered"后面加： modal-dialog-centered 就会中间显示-->
+      <!-- 要想有上次图片文件功能，后面必须加类属性：enctype="multipart/form-data" 否则上传是不行的-->
+      <form action="{% url 'myadmin_prototype_update_user_name' prototype.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="input-group mb-3">
-          <input type="text" name="id_name" readonly class="form-control" value="{{ user.id_name }}" placeholder="项目代号">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas ">项目代号</span>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">借用人名字</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="card-body register-card-body">
+          <div class="input-group mb-3">
+            <input type="text" name="id_name" readonly class="form-control" value="{{ prototype.id_name }}" placeholder="项目代号">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas ">项目代号</span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <!--<input type="text" name="user_name" class="form-control" value="" placeholder="样机借用人">-->
+            <!--遍历用户名">-->
+            <select class="form-control" name="user_name" >
+              <option>{{prototype.user_name}}</option>
+              {% for userinfo in userAllList %}
+                <option>{{userinfo.username}}</option>
+              {% endfor %}
+            </select>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas ">转借给</span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" readonly value="{{ prototype.borrow_time|date:'Y-m-d H:i:s' }}" placeholder="借用时间">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-times-circle-o">借用时间</span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" readonly value="{{ prototype.still_time|date:'Y-m-d H:i:s' }}" placeholder="归还时间">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-times-circle-o">归还时间</span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" name="remarks" class="form-control" value="{{ prototype.备注 }}" placeholder="备注">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas ">备注</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
-          <!--<input type="text" name="user_name" class="form-control" value="" placeholder="样机借用人">-->
-          <!--遍历用户名">-->
-          <select class="form-control" name="user_name" >
-            <option>{{user.user_name}}</option>
-            {% for userinfo in userAllList %}
-              <option>{{ userinfo.username }}</option>
-            {% endfor %}
-          </select>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas ">转借给</span>
-            </div>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="submit" class="btn btn-primary">保存更改</button>
         </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" readonly value="{{ user.borrow_time|date:'Y-m-d H:i:s' }}" placeholder="借用时间">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-times-circle-o">借用时间</span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" readonly value="{{ user.still_time|date:'Y-m-d H:i:s' }}" placeholder="归还时间">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-times-circle-o">归还时间</span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" name="remarks" class="form-control" value="{{ user.备注 }}" placeholder="备注">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas ">备注</span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">保存</button>
-          </div>
-          <!-- /.col -->
-        </div>
+      </div>
       </form>
     </div>
-    <!-- /.form-box -->
-    </div>
-  </div><!-- /.card -->
-{% endblock %}
+  </div>
+<!-- /.编辑转借人信息  -->

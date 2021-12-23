@@ -6,6 +6,7 @@ from django.urls import path
 from myadmin.views import index
 from myadmin.views import user
 from myadmin.views import prototype
+from myadmin.views import discipline
 from myadmin.views import ytl
 
 
@@ -18,7 +19,6 @@ urlpatterns = [
     path('user/insert', user.insert, name="myadmin_user_insert"),  # 执行添加
     path('user/del/<int:uid>', user.delete, name="myadmin_user_delete"),  # 删除
     path('user/edit/<int:uid>', user.edit, name="myadmin_user_edit"),  # 编辑
-    path('user/editPersonal/<int:uid>', user.edit_personal, name="myadmin_user_edit_personal"),  # 只能编辑个人信息，不能编辑他人信息路由
     path('user/update/<int:uid>', user.update, name="myadmin_user_update"),  # 修改
     path('user/updatePersonal/<int:uid>', user.update_personal, name="myadmin_user_update_personal"),  # 执行修改个人信息路由
 
@@ -40,6 +40,11 @@ urlpatterns = [
     path('prototype/editStillTime/<int:uid>', prototype.edit_still_time, name="myadmin_prototype_edit_still_time"),  # 归还时间表单路由
     path('prototype/updateUserName/<int:uid>', prototype.update_user_name, name="myadmin_prototype_update_user_name"),  # 执行只能编辑修改自己名字
     path('prototype/updateStillTime/<int:uid>', prototype.update_still_time, name="myadmin_prototype_update_still_time"),  # 归还时间执行路由
+
+    # 违规记录路由
+    path('discipline/<int:n>/<int:pageNums>/', discipline.discipline, name="myadmin_discipline"),  # 分页展示违规记录信息路由
+    path('discipline/insert/', discipline.insert, name="myadmin_discipline_insert"),  # 执行添加记录信息路由
+    path('discipline/update/<int:uid>/', discipline.update, name="myadmin_discipline_update"),  # 分页展示违规记录信息路由
 
     # ytl信息管理路由
     path('YTLUrl/', ytl.ytl_url, name="myadmin_ytl_ytl_url"),  # 我的常用网址

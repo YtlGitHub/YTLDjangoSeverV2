@@ -12,3 +12,12 @@ def phone_info(request):
     '''adb命令查看手机信息'''
     context = {"myweb_ytl_phone_info_menu_open": "menu-open", "myweb_ytl_phone_info_active": "active"}
     return render(request, "myweb/ytl/phoneInfo.html", context)
+
+
+def modal(request):
+    context = {"myweb_ytl_phone_info_menu_open": "menu-open", "myweb_ytl_modal_active": "active"}
+    return render(request, "myweb/ytl/modal.html", context)
+
+
+def text(request):
+    print("测试用")
