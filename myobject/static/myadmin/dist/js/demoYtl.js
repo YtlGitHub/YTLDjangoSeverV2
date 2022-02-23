@@ -1,10 +1,19 @@
+//自定义执行信息样机归还提示判断，参数url是地址
+function myStill(url){
+    if (confirm("确定要归还？!!!")){
+	//网页跳转
+	window.location=url;
+  }
+}
+
 //自定义执行信息删除提示判断，参数uu是成功的删除url地址
 function doDel(uu){
-  if (confirm("确定要删除？")){
+  if (confirm("确定要删除？!!!")){
 	//网页跳转
 	window.location=uu;
   }
 }
+
 
 //<button></button>
 function doDel2(url){
@@ -15,7 +24,7 @@ function doDel2(url){
 	btbcl: "取消",
   }).on(function (e){
 	if(e){
-	  window.location.href=url;
+	  window.location=url;
 	}
 	})
 }
@@ -35,7 +44,7 @@ function display_alert()
   }
 
 //confirm() 方法用于显示一个带有指定消息和 OK 及取消按钮的对话框。onclick="disp_confirm()"
-function disp_confirm()
+function disp_confirm(url)
   {
   var r=confirm("按下按钮")
   if (r==true)
@@ -72,7 +81,7 @@ function add_smoke() {
 		cache:false,
 		type: "POST",//方法类型
 		dataType: "json",//预期服务器返回的数据类型
-		url: "/add_smoke/" ,//url
+		url: "/myadmin/user/1/" ,//url
 		data: $('#add-smoke-form').serialize(), //将模态框的form表单数据序列化，以便提交到后台
 		async:false,  //必须要为false,必须必须
 

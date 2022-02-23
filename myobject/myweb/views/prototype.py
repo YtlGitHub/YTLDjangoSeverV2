@@ -7,8 +7,8 @@ from django.core.paginator import Paginator  # 导入分页器
 # from django.db.models import Sum  # 导入求和函数
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.http import JsonResponse  # 导入弹框模块
-from django.contrib import messages  # 导入弹框模块
+from django.http import JsonResponse  # 导入ajax弹框模块
+from django.contrib import messages  # 导入只提示一次的模块
 
 
 # 把样机表信息存储在session中
@@ -85,7 +85,7 @@ def pages_prototype(request, n=1, pageNums=5):
         n = p.num_pages
     plist = p.page(n)  # 当前的页
     userAll = User.objects.all()
-    context = {"prototypeList": list,
+    context = {"prototypeList": plist,
                "n": n,
                "pagelist": p.page_range,
                "pnumpages": p.num_pages,
@@ -167,7 +167,7 @@ def pages_prototype_me(request, n=1, pageNums=5):
         n = p.num_pages
     plist = p.page(n)  # 当前的页
     userAll = User.objects.all()
-    context = {"prototypeList": list,
+    context = {"prototypeList": plist,
                "n": n,
                "pagelist": p.page_range,
                "pnumpages": p.num_pages,
@@ -301,7 +301,6 @@ def update_still_time(request, uid=1):
         ob = ob.get(id=uid)
         ob.user_name = "谭华杰"
         ob.still_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        ob.备注 = request.POST['remarks']
         ob.save()
         # 把样机表信息存储在session中
         storage_prototype(request)

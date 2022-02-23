@@ -6,6 +6,7 @@ from myweb.views import index
 from myweb.views import prototype
 from myweb.views import user
 from myweb.views import ytl
+from myweb.views import ytlAjax
 
 
 urlpatterns = [
@@ -27,13 +28,20 @@ urlpatterns = [
     path('prototype/del/<int:uid>', prototype.delete, name="myweb_prototype_delete"),  # 删除
     path('prototype/edit/<int:uid>', prototype.edit, name="myweb_prototype_edit"),  # 编辑表单
     path('prototype/update/<int:uid>', prototype.update, name="myweb_prototype_update"),  # 执行编辑修改信息
-    path('prototype/editUserName/<int:uid>', prototype.edit_user_name, name="myweb_prototype_edit_user_name"),  # 只能编辑自己名字表单
+    path('prototype/editUserName/<int:uid>', prototype.edit_user_name, name="myweb_prototype_edit_user_name"),  # 转借路由表单
     path('prototype/editStillTime/<int:uid>', prototype.edit_still_time, name="myweb_prototype_edit_still_time"),  # 归还时间表单路由
-    path('prototype/updateUserName/<int:uid>', prototype.update_user_name, name="myweb_prototype_update_user_name"),  # 执行只能编辑修改自己名字
+    path('prototype/updateUserName/<int:uid>', prototype.update_user_name, name="myweb_prototype_update_user_name"),  # 转借执行路由
     path('prototype/updateStillTime/<int:uid>', prototype.update_still_time, name="myweb_prototype_update_still_time"),  # 归还时间执行路由
 
     # ytl信息管理路由
     path('YTLUrl/', ytl.ytl_url, name="myweb_ytl_ytl_url"),  # 我的常用网址
     path('phoneInfo/', ytl.phone_info, name="myweb_ytl_phone_info"),  # adb命令查看手机信息
+
+    # ajax请求路由
+    path('prototype/ajax', ytlAjax.ytl_ajax, name="myweb_ytl_ajax"),  # ajax转借请求路由
+    path('prototype/ajax/stillTime', ytlAjax.ytl_ajax_still_time, name="myweb_ytl_ajax_still_time"),  # ajax归还请求路由
+
+    # 弹框提示信息路由
+    # path('prototype/tk', ytlAjax.ytl_tk, name="myweb_ytl_tk"),  # ajax转借请求路由
 ]
 

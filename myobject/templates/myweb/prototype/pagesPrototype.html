@@ -11,58 +11,64 @@
       <!-- 加载样机查询form表单div -->
       <div class="card-header">
         <form action="" method="get">
-            <table class="aaa" border="0">
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row dataTables_filter">
+                    <div class="col-sm-12 col-md-2 ">
+                        <span>项目代号：</span><input class="demo" type="text" size="10" name="id_name" placeholder="项目代号" value="{{idName}}"/>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;借用人：</span><input class="demo" type="text" size="10" name="user_name" placeholder="借用人" value="{{userName}}"/>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售：</span><input class="demo" type="text" size="10" name="de" placeholder="销售" value="{{de}}"/>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品牌：</span><input class="demo" type="text" size="10" name="brand" placeholder="品牌" value="{{brand}}"/></td>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <span>安卓版本：</span><input class="demo" type="text" size="10" name="pv" placeholder="安卓版本" value="{{pv}}"/></td>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OS：</span><input class="demo" type="text" size="10" name="os" placeholder="OS" value="{{OS}}"/></td>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMEI：</span><input class="demo" type="text" size="10" name="IMEI" placeholder="IMEI" value="{{IMEI}}"/></td>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <i class="fas fa-search"></i><input class="demo" type="submit" value="搜索"/>
+                    </div>
+                </div>
+            </div>
+<!--            <table class="aaa" border="0">-->
 <!--                <tr>-->
-<!--                    <td width=100px>姓名：</td>-->
-<!--                    <td>-->
-<!--                        <select name="prototypeName" >-->
-<!--                            <option>{{prototypeName}}</option>-->
-<!--                            <option>杨天龙</option>-->
-<!--                            <option>何振兴</option>-->
-<!--                            <option>蒋小丽</option>-->
-<!--                            <option>郑廷威</option>-->
-<!--                            <option>王杰玉</option>-->
-<!--                            <option>刘志霞</option>-->
-<!--                            <option>彭雨超</option>-->
-<!--                            <option>许天华</option>-->
-<!--                            <option>黄伟鹏</option>-->
-<!--                            <option>刘康欣</option>-->
-<!--                        </select>-->
-<!--                    </td>-->
-<!--                    <td></td>-->
-<!--                    <td></td>-->
-<!--                    <td></td>-->
-<!--                    <td></td>-->
+<!--                    <td width=100px>项目代号：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="id_name1" value="{{idName}}"/></td>-->
+<!--                    <td>借用人：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="user_name1" value="{{userName}}"/></td>-->
+<!--                    <td>销售：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="de1" value="{{de}}"/></td>-->
 <!--                </tr>-->
-                <tr>
-                    <td width=100px>项目代号：</td>
-                    <td><input id="demo" type="text" size="10" name="id_name" value="{{idName}}"/></td>
-                    <td>借用人：</td>
-                    <td><input id="demo" type="text" size="10" name="user_name" value="{{userName}}"/></td>
-                    <td>销售：</td>
-                    <td><input id="demo" type="text" size="10" name="de" value="{{de}}"/></td>
-                </tr>
-                <tr>
-                    <td>品牌： </td>
-                    <td><input id="demo" type="text" size="10" name="brand" value="{{brand}}"/></td>
-                    <td>安卓版本：</td>
-                    <td><input id="demo" type="text" size="10" name="pv" value="{{pv}}"/></td>
-                    <td>OS：</td>
-                    <td><input id="demo" type="text" size="10" name="os" value="{{OS}}"/></td>
-                </tr>
-                <tr>
-                    <td>IMEI： </td>
-                    <td><input id="demo" type="text" size="10" name="IMEI" value="{{IMEI}}"/></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <i class="fas fa-search"></i>
-                        <input class="" id="demo" type="submit" value="搜索"/>
-                    </td>
-                </tr>
-            </table>
+<!--                <tr>-->
+<!--                    <td>品牌： </td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="brand1" value="{{brand}}"/></td>-->
+<!--                    <td>安卓版本：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="pv1" value="{{pv}}"/></td>-->
+<!--                    <td>OS：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="os1" value="{{OS}}"/></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>IMEI： </td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="IMEI1" value="{{IMEI}}"/></td>-->
+<!--                    <td></td>-->
+<!--                    <td></td>-->
+<!--                    <td></td>-->
+<!--                    <td></td>-->
+<!--                    <td>-->
+<!--                        <i class="fas fa-search"></i>-->
+<!--                        <input class="" id="demo" type="submit" value="搜索"/>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </table>-->
         </form>
       </div>
       <!-- /.card-header -->
@@ -74,6 +80,7 @@
         <div class="row">
             <!-- 加载样机查询div -->
             <div class="col-sm-12">
+
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -106,22 +113,26 @@
                         <td>{{prototype.IMEI}}</td>
                         <td>{{prototype.name}}</td>
                         <td>
+<!--                            <a href="javascript:myUpdateUserName('{% url 'myweb_prototype_update_user_name' prototype.id %}')" type="button" class="btn btn-primary">-->
+<!--                                <i class="fas fa-edit"></i>-->
+<!--                                <span class="">{{prototype.user_name}}</span>-->
+<!--                            </a>-->
                             <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserName" onclick="editFile('.$prototype.id.', '.$prototype.id_name.', '.$prototype.user_name.', '.$prototype.borrow_time.', '.$prototype.still_time|date:'Y-m-d H:i:s'.', '.$prototype.备注.')">-->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#a{{prototype.id}}">
                                 <i class="fas fa-edit"></i>
-                                <span class="">{{prototype.user_name}}</span>
+                                <span class="" id="prototype-user-name{{prototype.id}}">{{prototype.user_name}}</span>
                             </button>
                             {% include "./editUserName.html" %}
                         </td>
                         <td>{{prototype.borrow_time|date:'Y-m-d H:i:s'}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#b{{prototype.id}}">
+                            <a href="javascript:stillTime('{{prototype.id}}');" type="button" class="btn btn-primary">
                                 <i class="fas fa-edit"></i>
                                 <span class="">归还{{prototype.still_time|date:'Y-m-d H:i:s'}}</span>
-                            </button>
-                            {% include "./editStillTime.html" %}
+                            </a>
+<!--                            <button class="btn btn-primary" id="stillTime{{prototype.id}}" type="button">归还{{prototype.still_time|date:'Y-m-d H:i:s'}}</button>-->
                         </td>
-                        <td>{{prototype.备注}}</td>
+                        <td id="prototype-remarks{{prototype.id}}">{{prototype.备注}}</td>
                         <td>
                             <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#edit{{prototype.id}}">
                                 <i class="fas fa-edit"></i>
@@ -141,64 +152,64 @@
             </div>
             <!-- 加载样机查询结束div -->
         </div>
-        <!-- 页尾div -->
-<!--        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">-->
-<!--            <div class="row">-->
-<!--                &lt;!&ndash; 添加样机div &ndash;&gt;-->
-<!--                <div class="col-sm-12 col-md-0">-->
-<!--                </div>-->
-<!--                &lt;!&ndash; 共{{pCount}}多少条div &ndash;&gt;-->
-<!--                <div class="col-sm-12 col-md-1">-->
-<!--                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite"><span>共{{pCount}}条</span></div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; 每页选择展示多少条div &ndash;&gt;-->
-<!--                <div class="col-sm-12 col-md-2">-->
-<!--                    <div class="btn-group show">-->
-<!--                        <button type="button" class="btn btn-info" name="pages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{pagesNum}}条/页</font></font></button>-->
-<!--                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="true">-->
-<!--                        <span class="sr-only"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换下拉菜单</font></font></span>-->
-<!--                        </button>-->
-<!--                        <div class="dropdown-menu" role="menu" style="position: absolute; transform: translate3d(57px, 41px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">-->
-<!--                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 5 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5条/页</font></font></a>-->
-<!--                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 10 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">10条/页</font></font></a>-->
-<!--                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 20 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">20条/页</font></font></a>-->
-<!--                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 50 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">50条/页</font></font></a>-->
-<!--                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 100 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">100条/页</font></font></a>-->
-<!--                            <div class="dropdown-divider"></div>-->
-<!--                            <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分离链接</font></font></a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; 页码div &ndash;&gt;-->
-<!--                <div class="col-sm-12 col-md-9">-->
-<!--                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">-->
-<!--                        <ul class="pagination">-->
-<!--                            {% if n <= 1 %} &lt;!&ndash;当上一页到第一页时就不能在上了&ndash;&gt;-->
-<!--                            <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="{% url 'myweb_prototype_pages' n|add:-1 pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">上一页</a></li>-->
-<!--                            {% else %}-->
-<!--                            <li class="paginate_button page-item previous" id="example1_previous"><a href="{% url 'myweb_prototype_pages' n|add:-1 pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">上一页</a></li>-->
-<!--                            {% endif %}-->
-<!--                            {% for p in pagelist %}  &lt;!&ndash;遍历每页数据&ndash;&gt;-->
-<!--                            {% if p == n %}  &lt;!&ndash;当当前页等于页码页时图标高亮显示,后面多加active会高亮显示&ndash;&gt;-->
-<!--                            <li class="paginate_button page-item active"><a href="{% url 'myweb_prototype_pages' p pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">{{p}}</a></li>-->
-<!--                            {% elif 1 == p or n|add:1 == p or n|add:-1 == p or n|add:2 == p or n|add:-2 == p or pnumpages == p%}-->
-<!--                            <li class="paginate_button page-item"><a href="{% url 'myweb_prototype_pages' p pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">{{p}}</a></li>-->
-<!--                            {% else %}-->
-<!--                            {% if n|add:3 == p or n|add:-3 == p or n|add:4 == p or n|add:-4 == p or n|add:5 == p or n|add:-5 == p %}-->
-<!--                            <li class="paginate_button page-item"><a href="{% url 'myweb_prototype_pages' p pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">.</a></li>-->
-<!--                            {% endif %}-->
-<!--                            {% endif %}-->
-<!--                            {% endfor %}-->
-<!--                            {% if n >= pnumpages %}  &lt;!&ndash;当下一页到最后页时就不能在下一下了&ndash;&gt;-->
-<!--                            <li class="paginate_button page-item next disabled" id="example1_next"><a href="{% url 'myweb_prototype_pages' n|add:1 pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">下一页</a></li>-->
-<!--                            {% else %}-->
-<!--                            <li class="paginate_button page-item next" id="example1_next"><a href="{% url 'myweb_prototype_pages' n|add:1 pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">下一页</a></li>-->
-<!--                            {% endif %}-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--页尾div -->
+        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <!-- 添加样机div -->
+                <div class="col-sm-12 col-md-0">
+                </div>
+                <!-- 共{{pCount}}多少条div -->
+                <div class="col-sm-12 col-md-1">
+                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite"><span>共{{pCount}}条</span></div>
+                </div>
+                <!-- 每页选择展示多少条div -->
+                <div class="col-sm-12 col-md-2">
+                    <div class="btn-group show">
+                        <button type="button" class="btn btn-info" name="pages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{pagesNum}}条/页</font></font></button>
+                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="true">
+                        <span class="sr-only"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换下拉菜单</font></font></span>
+                        </button>
+                        <div class="dropdown-menu" role="menu" style="position: absolute; transform: translate3d(57px, 41px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
+                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 5 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5条/页</font></font></a>
+                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 10 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">10条/页</font></font></a>
+                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 20 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">20条/页</font></font></a>
+                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 50 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">50条/页</font></font></a>
+                            <a class="dropdown-item" href="{% url 'myweb_prototype_pages' n 100 %}{{mywhere}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">100条/页</font></font></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分离链接</font></font></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 页码div -->
+                <div class="col-sm-12 col-md-9">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                        <ul class="pagination">
+                            {% if n <= 1 %} <!--当上一页到第一页时就不能在上了-->
+                            <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="{% url 'myweb_prototype_pages' n|add:-1 pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">上一页</a></li>
+                            {% else %}
+                            <li class="paginate_button page-item previous" id="example1_previous"><a href="{% url 'myweb_prototype_pages' n|add:-1 pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">上一页</a></li>
+                            {% endif %}
+                            {% for p in pagelist %}  <!--遍历每页数据-->
+                            {% if p == n %}  <!--当当前页等于页码页时图标高亮显示,后面多加active会高亮显示-->
+                            <li class="paginate_button page-item active"><a href="{% url 'myweb_prototype_pages' p pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">{{p}}</a></li>
+                            {% elif 1 == p or n|add:1 == p or n|add:-1 == p or n|add:2 == p or n|add:-2 == p or pnumpages == p%}
+                            <li class="paginate_button page-item"><a href="{% url 'myweb_prototype_pages' p pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">{{p}}</a></li>
+                            {% else %}
+                            {% if n|add:3 == p or n|add:-3 == p or n|add:4 == p or n|add:-4 == p or n|add:5 == p or n|add:-5 == p %}
+                            <li class="paginate_button page-item"><a href="{% url 'myweb_prototype_pages' p pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">.</a></li>
+                            {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                            {% if n >= pnumpages %}  <!--当下一页到最后页时就不能在下一下了-->
+                            <li class="paginate_button page-item next disabled" id="example1_next"><a href="{% url 'myweb_prototype_pages' n|add:1 pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">下一页</a></li>
+                            {% else %}
+                            <li class="paginate_button page-item next" id="example1_next"><a href="{% url 'myweb_prototype_pages' n|add:1 pagesNum %}{{mywhere}}" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">下一页</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- /页尾结束 -->
       </div>
       <!-- /.card-body -->

@@ -68,7 +68,7 @@
                 <th>昵称/个性签名</th>
                 <th>性别</th>
                 <th>状态</th>
-                <th>电话号码</th>
+                <th><i class="fas fa-volume-control-phone"></i>电话号码</th>
                 <th>添加时间</th>
                 <th>修改时间</th>
                 <th>操作</th>
@@ -110,7 +110,7 @@
                       <span style="color: red">未知状态</span>
                     {% endif %}
                   </td>
-                  <td>{{vo.phone}}</td>
+                  <td><i class="fas fa-volume-control-phone"></i>{{vo.phone}}</td>
                   <td>{{vo.create_at|date:'Y-m-d H:i:s'}}</td>
                   <td>{{vo.update_at|date:'Y-m-d H:i:s'}}</td>
                   <td>
@@ -119,7 +119,7 @@
                         <span class="">编辑</span>
                     </a>
                     <a class="btn btn-block btn-danger" href="javascript:doDel('{% url 'myadmin_user_delete' vo.id %}');">
-                        <i class="fas fa-trash"></i>
+                        <i class="fas fa-user-times"></i>
                         <span>删除</span>
                     </a>
                     <button class="btn btn-block btn-danger" type="button" onclick="display_alert()">报警提示弹框</button>

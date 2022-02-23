@@ -250,7 +250,7 @@ def edit(request, uid=1):
     '''加载信息编辑表单'''
     try:
         ob = PrototypeInfo.objects.get(id=uid)
-        context = {"user": ob}
+        context = {"prototype": ob}
         return render(request, 'myadmin/prototype/edit.html', context)
     except Exception as err:
         print(err)
@@ -288,7 +288,7 @@ def edit_user_name(request, uid=1):
     # try:
     ob = PrototypeInfo.objects.get(id=uid)
     userAll = User.objects.all()
-    context = {"user": ob, "userAllList": userAll}
+    context = {"prototype": ob, "userAllList": userAll}
     return render(request, 'myadmin/prototype/editUserName.html', context)
     # except Exception as err:
     #     print(err)
@@ -318,7 +318,7 @@ def edit_still_time(request, uid=1):
     '''加载确认归还时间表单'''
     try:
         ob = PrototypeInfo.objects.get(id=uid)
-        context = {"user": ob}
+        context = {"prototype": ob}
         return render(request, 'myadmin/prototype/editStillTime.html', context)
     except Exception as err:
         print(err)
@@ -328,17 +328,16 @@ def edit_still_time(request, uid=1):
 
 def update_still_time(request, uid=1):
     '''执行确认归还'''
-    try:
-        ob = PrototypeInfo.objects
-        ob = ob.get(id=uid)
-        ob.user_name = "谭华杰"
-        ob.still_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        ob.备注 = request.POST['remarks']
-        ob.save()
-        # 把样机表信息存储在session中
-        storage_prototype(request)
-        context = {'info': '归还成功'}
-    except Exception as err:
-        print(err)
-        context = {'info': '归还失败'}
+    #try:
+    ob = PrototypeInfo.objects
+    ob = ob.get(id=uid)
+    ob.user_name = "谭华杰"
+    ob.still_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    ob.save()
+    # 把样机表信息存储在session中
+    storage_prototype(request)
+    context = {'info': '归还成功'}
+    #except Exception as err:
+        # print(err)
+        # context = {'info': '归还失败'}
     return render(request, "myadmin/info.html", context)

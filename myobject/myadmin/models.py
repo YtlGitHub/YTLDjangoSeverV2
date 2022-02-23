@@ -7,7 +7,7 @@ class User(models.Model):
     '''自定义User类'''
     username = models.CharField(max_length=50)  # 员工账号
     nickname = models.CharField(max_length=50)  # 昵称
-    sex = models.IntegerField()  # 性别：1男/2女
+    sex = models.IntegerField(choices=((1, '男'), (2, '女')))  # 性别：1男/2女
     password_hash = models.CharField(max_length=100)  # 密码
     password_salt = models.CharField(max_length=50)  # 密码干扰值
     status = models.IntegerField(default=1)  # 状态：1正常/2禁用/6管理员/9删除
@@ -92,7 +92,7 @@ class Discipline(models.Model):  # 违规记录
     violation = models.CharField('记录', max_length=255)
     time = models.DateTimeField('时间', max_length=255)
     actual = models.CharField('实际', max_length=50, blank=True)
-    fine = models.CharField('是否罚款', max_length=10, blank=True)
+    fine = models.CharField('是否已罚款', max_length=10, blank=True)
     money = models.IntegerField('金额', blank=True)
 
     # def __str__(self):

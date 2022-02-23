@@ -6,6 +6,18 @@
 </head>
 <body>
 
+<div id="box">
+<button onclick="popBox()">弹出框</button>
+    <div id="popLayer"></div>
+        <div id="popBox">
+            <h4 style="margin: 5px">分享二维码</h4>
+            <div class="close">
+                <a href="javascript:void(0)" onclick="closeBox()">关闭</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
     console.log(window.innerWidth)
@@ -32,6 +44,23 @@
 
     // 打开一个新的窗口，可以指定url，name
     // window.open('YTLURL.html', '', 'width=200, height=200')
+
+    /*点击弹出按钮*/
+    function popBox() {
+        var popBox = document.getElementById("popBox");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "block";
+        popLayer.style.display = "block";
+    };
+
+    /*点击关闭按钮*/
+    function closeBox() {
+        var popBox = document.getElementById("popBox");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "none";
+        popLayer.style.display = "none";
+    }
+
 </script>
 
 </body>

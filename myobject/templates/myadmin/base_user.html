@@ -8,12 +8,12 @@
   <!-- 暗色模式下的样式设置 -->
   <style>
     /* form表单背景颜色和边框颜色设置 */
-    #demo {
+    .demo {
       background-color: #343a40;
       color: green;
       caret-color: green;
     }
-    #demo:hover { border:1px solid green; }
+    .demo:hover { border:1px solid green; }
     /* 超链接颜色设置 */
     td a {
       color: white;
@@ -650,7 +650,33 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{% static 'myadmin/dist/js/demo.js' %}"></script>
 <!-- 我的js -->
-<script src="{% static 'myadmin/dist/js/demo-ytl.js' %}"></script>
+{% for discipline in disciplineList %}  <!-- for循环打印ajax信息 -->
+<script>
+  $.ajaxSetup({
+      data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+  $('#disciplineDel{{discipline.id}}').click(function(){
+    if (confirm("确定要删除？")){
+      //朝后端发送ajax请求
+      $.ajax({
+        //1.指定像哪个后端提交ajax请求，不填则默认向当前地址提交
+        url: "{% url 'myadmin_discipline_del' %}",
+        //2.指定请求方式：get/post 默认是get请求
+        type: 'POST',
+        //3.要提交后端得数据
+        data: {'idNumber': $('#disciplineId{{discipline.id}}').val()},
+        //4.回调函数：当后端返回结果时会自动触发，args用来接收后端得返回结果
+        success:function (args) {
+          console.log(args, typeof args);
+          alert(args.info)
+          location.reload();
+        }
+      })
+    }
+  });
+</script>
+{% endfor %}  <!-- for循环结束 -->
+<script src="{% static 'myadmin/dist/js/demoYtl.js' %}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{% static 'myadmin/dist/js/pages/dashboard2.js' %}"></script>
 </body>

@@ -1,5 +1,8 @@
+{% extends 'myadmin/base_user.html' %}
+
+{% load static %}
+{% block main_body %}
 <!-- 转借信息编辑 -->
-  <div class="modal fade" id="b{{prototype.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog" role="document"> <!-- class="modal-dialog modal-dialog-centered"后面加： modal-dialog-centered 就会中间显示-->
       <!-- 要想有上次图片文件功能，后面必须加类属性：enctype="multipart/form-data" 否则上传是不行的-->
       <form action="{% url 'myadmin_prototype_update_still_time' prototype.id %}" method="post" enctype="multipart/form-data">
@@ -62,5 +65,5 @@
         </div>
       </form>
     </div>
-  </div>
 <!-- /.编辑转借人信息  -->
+{% endblock %}

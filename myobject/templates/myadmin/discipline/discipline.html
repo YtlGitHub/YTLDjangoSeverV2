@@ -25,114 +25,72 @@
                 </div>
             </div>
         </div>
-      <!-- 加载样机查询form表单div -->
-      <div class="card-header">
-        <form action="" method="get">
-            <table class="aaa" border="0">
-<!--                <tr>-->
-<!--                    <td width=100px>姓名：</td>-->
-<!--                    <td>-->
-<!--                        <select name="prototypeName" >-->
-<!--                            <option>{{prototypeName}}</option>-->
-<!--                            <option>杨天龙</option>-->
-<!--                            <option>何振兴</option>-->
-<!--                            <option>蒋小丽</option>-->
-<!--                            <option>郑廷威</option>-->
-<!--                            <option>王杰玉</option>-->
-<!--                            <option>刘志霞</option>-->
-<!--                            <option>彭雨超</option>-->
-<!--                            <option>许天华</option>-->
-<!--                            <option>黄伟鹏</option>-->
-<!--                            <option>刘康欣</option>-->
-<!--                        </select>-->
-<!--                    </td>-->
-<!--                    <td></td>-->
-<!--                    <td></td>-->
-<!--                    <td></td>-->
-<!--                    <td></td>-->
-<!--                </tr>-->
-                <tr>
-                    <td width=100px>项目代号：</td>
-                    <td><input id="demo" type="text" size="10" name="id_name" value="{{idName}}"/></td>
-                    <td>借用人：</td>
-                    <td><input id="demo" type="text" size="10" name="user_name" value="{{userName}}"/></td>
-                    <td>销售：</td>
-                    <td><input id="demo" type="text" size="10" name="de" value="{{de}}"/></td>
-                </tr>
-                <tr>
-                    <td>品牌： </td>
-                    <td><input id="demo" type="text" size="10" name="brand" value="{{brand}}"/></td>
-                    <td>安卓版本：</td>
-                    <td><input id="demo" type="text" size="10" name="pv" value="{{pv}}"/></td>
-                    <td>OS：</td>
-                    <td><input id="demo" type="text" size="10" name="os" value="{{OS}}"/></td>
-                </tr>
-                <tr>
-                    <td>IMEI： </td>
-                    <td><input id="demo" type="text" size="10" name="IMEI" value="{{IMEI}}"/></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <i class="fas fa-search"></i>
-                        <input class="" id="demo" type="submit" value="搜索"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
-      </div>
-      <!-- /.card-header -->
-
-      <!-- tables表div -->
-      <!-- card-body div -->
       <div class="card-body">
+        <!-- 加载样机查询form表单div -->
+        <form action="" method="get">
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row dataTables_filter">
+                    <div class="col-sm-0">
+                        <input class="demo" type="text" size="10" name="id_name" placeholder="请输入搜索" value="{{idName}}"/> <!-- 输入框 -->
+                        <button class="demo" type="submit"><i class="fas fa-search"></i></button> <!-- 搜索按钮 -->
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- /.加载查询form表单div结束 -->
+        <!-- tables表div -->
+        <!-- card-body div -->
         <!-- 样机查询div -->
         <div class="row">
             <!-- 加载样机查询div -->
             <div class="col-sm-12">
                 <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>ID号</th>
-                        <th>姓名</th>
-                        <th>工号</th>
-                        <th>部门</th>
-                        <th>记录</th>
-                        <th>时间</th>
-                        <th>实际</th>
-                        <th>是否罚款</th>
-                        <th>罚款金额</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for discipline in disciplineList %}  <!-- for循环打印样机信息 -->
-                    <tr>
-                        <td>{{discipline.id}}</td>
-                        <td>{{discipline.name}}</td>
-                        <td>{{discipline.job_number}}</td>
-                        <td>{{discipline.supplier}}</td>
-                        <td>{{discipline.violation}}</td>
-                        <td>{{discipline.time|date:'Y-m-d H:i:s'}}</td>
-                        <td>{{discipline.actual}}</td>
-                        <td>{{discipline.fine}}</td>
-                        <td>{{discipline.money}}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit{{discipline.id}}">
-                                <i class="fas fa-edit"></i>
-                                <span class="">编辑</span>
-                            </button>
-                            {% include './edit.html' %}
-                            <a href="javascript:doDel('/admin');" class="btn btn-danger">
-                                <span class="fas fa-trash"></span>
-                                <span>删除</span>
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}  <!-- for循环结束 -->
-                </tbody>
-            </table>
+                    <thead>
+                        <tr>
+                            <th>ID号</th>
+                            <th>姓名</th>
+                            <th>工号</th>
+                            <th>部门</th>
+                            <th>记录</th>
+                            <th>时间</th>
+                            <th>实际</th>
+                            <th>是否已罚款</th>
+                            <th>罚款金额</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for discipline in disciplineList %}  <!-- for循环打印样机信息 -->
+                        <tr>
+                            <td>{{discipline.id}}</td>
+                            <td>{{discipline.name}}</td>
+                            <td>{{discipline.job_number}}</td>
+                            <td>{{discipline.supplier}}</td>
+                            <td>{{discipline.violation}}</td>
+                            <td>{{discipline.time|date:'Y-m-d H:i:s'}}</td>
+                            <td>{{discipline.actual}}</td>
+                            <td>{{discipline.fine}}</td>
+                            <td>{{discipline.money}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit{{discipline.id}}">
+                                    <i class="fas fa-edit"></i>
+                                    <span class="">编辑</span>
+                                </button>
+                                {% include './edit.html' %}
+                                <input type="hidden" id="disciplineId{{discipline.id}}" value="{{discipline.id}}">
+                                <button id="disciplineDel{{discipline.id}}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                    <span>删除</span>
+                                </button>
+<!--                                <a href="javascript:doDel('/admin');" class="btn btn-danger">-->
+<!--                                    <span class="fas fa-trash"></span>-->
+<!--                                    <span>删除</span>-->
+<!--                                </a>-->
+                            </td>
+                        </tr>
+                        {% endfor %}  <!-- for循环结束 -->
+                    </tbody>
+                </table>
             </div>
             <!-- 加载样机查询结束div -->
         </div>
@@ -191,7 +149,7 @@
                 </div>
             </div>
         </div>
-        <!-- /页尾结束 -->
+<!--        &lt;!&ndash; /页尾结束 &ndash;&gt;-->
       </div>
       <!-- /.card-body -->
     </div>

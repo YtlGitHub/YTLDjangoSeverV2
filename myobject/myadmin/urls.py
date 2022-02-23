@@ -45,6 +45,7 @@ urlpatterns = [
     path('discipline/<int:n>/<int:pageNums>/', discipline.discipline, name="myadmin_discipline"),  # 分页展示违规记录信息路由
     path('discipline/insert/', discipline.insert, name="myadmin_discipline_insert"),  # 执行添加记录信息路由
     path('discipline/update/<int:uid>/', discipline.update, name="myadmin_discipline_update"),  # 分页展示违规记录信息路由
+    path('discipline/del/', discipline.delete, name="myadmin_discipline_del"),  # 删除违规记录信息路由
 
     # ytl信息管理路由
     path('YTLUrl/', ytl.ytl_url, name="myadmin_ytl_ytl_url"),  # 我的常用网址

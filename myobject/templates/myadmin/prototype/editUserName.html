@@ -1,28 +1,8 @@
-<!--editFile =  function(prototype.id, prototype.id_name, prototype.user_name, prototype.borrow_time, prototype.still_time|date:'Y-m-d H:i:s, prototype.备注){-->
-<!--        $("#prototype.id").val(prototype.id);-->
-<!--        $("#prototype.id_name").val(prototype.id_name);-->
-<!--        $("#prototype.user_name").val(prototype.user_name);-->
-<!--        $("#prototype.borrow_time").val(prototype.still_time|date:'Y-m-d H:i:s);-->
-<!--        $("#prototype.备注").html($('.edit_btn').eq(i-1).attr("prototype.备注"));-->
-<!--    }-->
+{% extends 'myadmin/base_user.html' %}
 
-
-<!--$("#editUserName").modal("hide");-->
-<!--    function Values(obj){-->
-<!--        $("#prototype.user_name").val(obj);-->
-<!--    }-->
-
-<!--<script type="text/javascript">-->
-<!--    $(function(){-->
-<!--        $('#editUserName').modal("hide");-->
-<!--    });-->
-<!--    function values(ID){-->
-<!--            $('#prototype-id').val(ID);-->
-<!--    }-->
-<!--</script>-->
-
+{% load static %}
+{% block main_body %}
 <!-- 转借信息编辑 -->
-  <div class="modal fade" id="a{{prototype.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog" role="document"> <!-- class="modal-dialog modal-dialog-centered"后面加： modal-dialog-centered 就会中间显示-->
       <!-- 要想有上次图片文件功能，后面必须加类属性：enctype="multipart/form-data" 否则上传是不行的-->
       <form action="{% url 'myadmin_prototype_update_user_name' prototype.id %}" method="post" enctype="multipart/form-data">
@@ -30,9 +10,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalCenterTitle">借用人名字</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
         <div class="card-body register-card-body">
           <div class="input-group mb-3">
@@ -49,7 +26,7 @@
             <select class="form-control" name="user_name" >
               <option>{{prototype.user_name}}</option>
               {% for userinfo in userAllList %}
-                <option>{{userinfo.username}}</option>
+              <option>{{userinfo.username}}</option>
               {% endfor %}
             </select>
             <div class="input-group-append">
@@ -84,11 +61,10 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
           <button type="submit" class="btn btn-primary">保存更改</button>
         </div>
       </div>
       </form>
     </div>
-  </div>
 <!-- /.编辑转借人信息  -->
+{% endblock %}

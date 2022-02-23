@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <input type="text" name="job_number" class="form-control" value="{{ discipline.job_number }}" placeholder="工号">
+              <input type="text" name="job_number" readonly class="form-control" value="{{ discipline.job_number }}" placeholder="工号">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas ">工号</span>
@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <input type="text" name="time" class="form-control" value="{{ discipline.time|date:'Y-m-d H:i:s' }}" placeholder="时间">
+              <input type="text" name="time" readonly class="form-control" value="{{ discipline.time|date:'Y-m-d H:i:s' }}" placeholder="时间">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas ">时间</span>
@@ -64,7 +64,7 @@
               <input type="text" name="fine" class="form-control" value="{{ discipline.fine }}" placeholder="罚款">
               <div class="input-group-append">
                 <div class="input-group-text">
-                  <span class="fas ">是否罚款</span>
+                  <span class="fas ">是否已罚款</span>
                 </div>
               </div>
             </div>

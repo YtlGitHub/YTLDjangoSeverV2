@@ -28,58 +28,88 @@
       <!-- 加载样机查询form表单div -->
         <div class="card-header">
         <form action="" method="get">
-            <table class="aaa" border="0">
-        <!--                <tr>-->
-        <!--                    <td width=100px>姓名：</td>-->
-        <!--                    <td>-->
-        <!--                        <select name="prototypeName" >-->
-        <!--                            <option>{{prototypeName}}</option>-->
-        <!--                            <option>杨天龙</option>-->
-        <!--                            <option>何振兴</option>-->
-        <!--                            <option>蒋小丽</option>-->
-        <!--                            <option>郑廷威</option>-->
-        <!--                            <option>王杰玉</option>-->
-        <!--                            <option>刘志霞</option>-->
-        <!--                            <option>彭雨超</option>-->
-        <!--                            <option>许天华</option>-->
-        <!--                            <option>黄伟鹏</option>-->
-        <!--                            <option>刘康欣</option>-->
-        <!--                        </select>-->
-        <!--                    </td>-->
-        <!--                    <td></td>-->
-        <!--                    <td></td>-->
-        <!--                    <td></td>-->
-        <!--                    <td></td>-->
-        <!--                </tr>-->
-                <tr>
-                    <td width=100px>项目代号：</td>
-                    <td><input id="demo" type="text" size="10" name="id_name" value="{{idName}}"/></td>
-                    <td>借用人：</td>
-                    <td><input id="demo" type="text" size="10" name="user_name" value="{{userName}}"/></td>
-                    <td>销售：</td>
-                    <td><input id="demo" type="text" size="10" name="de" value="{{de}}"/></td>
-                </tr>
-                <tr>
-                    <td>品牌： </td>
-                    <td><input id="demo" type="text" size="10" name="brand" value="{{brand}}"/></td>
-                    <td>安卓版本：</td>
-                    <td><input id="demo" type="text" size="10" name="pv" value="{{pv}}"/></td>
-                    <td>OS：</td>
-                    <td><input id="demo" type="text" size="10" name="os" value="{{OS}}"/></td>
-                </tr>
-                <tr>
-                    <td>IMEI： </td>
-                    <td><input id="demo" type="text" size="10" name="IMEI" value="{{IMEI}}"/></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <i class="fas fa-search"></i>
-                        <input class="" id="demo" type="submit" value="搜索"/>
-                    </td>
-                </tr>
-            </table>
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row dataTables_filter">
+                    <div class="col-sm-12 col-md-2 ">
+                        <span>项目代号：</span><input class="demo" type="text" size="10" name="id_name" placeholder="项目代号" value="{{idName}}"/>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;借用人：</span><input class="demo" type="text" size="10" name="user_name" placeholder="借用人" value="{{userName}}"/>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售：</span><input class="demo" type="text" size="10" name="de" placeholder="销售" value="{{de}}"/>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品牌：</span><input class="demo" type="text" size="10" name="brand" placeholder="品牌" value="{{brand}}"/></td>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <span>安卓版本：</span><input class="demo" type="text" size="10" name="pv" placeholder="安卓版本" value="{{pv}}"/></td>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OS：</span><input class="demo" type="text" size="10" name="os" placeholder="OS" value="{{OS}}"/></td>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMEI：</span><input class="demo" type="text" size="10" name="IMEI" placeholder="IMEI" value="{{IMEI}}"/></td>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <button class="demo" type="submit">
+                            <i class="fas fa-search"></i>搜索
+                        </button>
+                    </div>
+                </div>
+            </div>
+<!--            <table class="aaa" border="0">-->
+<!--        &lt;!&ndash;                <tr>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <td width=100px>姓名：</td>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <td>&ndash;&gt;-->
+<!--        &lt;!&ndash;                        <select name="prototypeName" >&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>{{prototypeName}}</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>杨天龙</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>何振兴</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>蒋小丽</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>郑廷威</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>王杰玉</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>刘志霞</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>彭雨超</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>许天华</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>黄伟鹏</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                            <option>刘康欣</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                        </select>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    </td>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <td></td>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <td></td>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <td></td>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <td></td>&ndash;&gt;-->
+<!--        &lt;!&ndash;                </tr>&ndash;&gt;-->
+<!--                <tr>-->
+<!--                    <td width=100px>项目代号：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="id_name" value="{{idName}}"/></td>-->
+<!--                    <td>借用人：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="user_name" value="{{userName}}"/></td>-->
+<!--                    <td>销售：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="de" value="{{de}}"/></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>品牌： </td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="brand" value="{{brand}}"/></td>-->
+<!--                    <td>安卓版本：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="pv" value="{{pv}}"/></td>-->
+<!--                    <td>OS：</td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="os" value="{{OS}}"/></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>IMEI： </td>-->
+<!--                    <td><input id="demo" type="text" size="10" name="IMEI" value="{{IMEI}}"/></td>-->
+<!--                    <td></td>-->
+<!--                    <td></td>-->
+<!--                    <td></td>-->
+<!--                    <td></td>-->
+<!--                    <td>-->
+<!--                        <i class="fas fa-search"></i>-->
+<!--                        <input class="" id="demo" type="submit" value="搜索"/>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </table>-->
         </form>
         </div>
         <!-- /.card-header -->
@@ -123,27 +153,24 @@
                         <td>{{prototype.IMEI}}</td>
                         <td>{{prototype.name}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#a{{prototype.id}}" value="{{prototype.id}}">
-                            <i class="fas fa-edit"></i>
+                            <a href="{% url 'myadmin_prototype_edit_user_name' prototype.id %}" type="button" class="btn btn-primary">
+                                <i class="fas fa-edit"></i>
                                 <span class="">{{prototype.user_name}}</span>
-                            </button>
-                            {% include "./editUserName.html" %}
+                            </a>
                         </td>
                         <td>{{prototype.borrow_time|date:'Y-m-d H:i:s'}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#b{{prototype.id}}" value="{{prototype.id}}">
+                            <a href="javascript:myStill('{% url 'myadmin_prototype_update_still_time' prototype.id %}');" type="button" class="btn btn-primary">
                                 <i class="fas fa-edit"></i>
                                 <span class="">{{prototype.still_time|date:'Y-m-d H:i:s'}}</span>
-                            </button>
-                            {% include "./editStillTime.html" %}
+                            </a>
                         </td>
                         <td>{{prototype.备注}}</td>
                         <td>
-                            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#prototype-edit-add{{prototype.id}}">
+                            <a href="{% url 'myadmin_prototype_edit' prototype.id %}" type="button" class="btn btn-block btn-primary">
                                 <i class="fas fa-edit"></i>
                                 <span class="">编辑</span>
-                            </button>
-                            {% include './edit.html' %}
+                            </a>
                             <a href="javascript:doDel('/admin');" class="btn btn-block btn-danger">
                                 <i class="fas fa-trash"></i>
                                 <span>删除</span>
